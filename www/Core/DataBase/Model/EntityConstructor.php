@@ -53,6 +53,11 @@ class EntityConstructor {
     protected $values = [];
 
     /**
+     * @var string
+     */
+    protected $sqlFile = '';
+
+    /**
      * @var array
      */
     protected $accessFlags = [
