@@ -1,0 +1,113 @@
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+
+php_value memory_limit 128M
+#Склеиваем www
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
+
+    # nothing to do there in subrequests
+    RewriteCond %{ENV:NS}	!=1
+    RewriteCond %{IS_SUBREQ} =true
+    	RewriteRule (.*) $1 [L,QSA]
+    #do NS=0?
+
+
+    #RewriteCond %{REQUEST_URI} \.(css|jpg|gif|png|zip|rar|doc|xls|js|tif|tiff|docx|xlsx|ico)$|test\.php$
+    RewriteCond %{REQUEST_FILENAME} -d [OR]
+    #RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -s
+        RewriteRule ^(.*)$ $1 [L,QSA]
+
+    #Прверка адреса хоста, пока не нужно
+    #RewriteCond %{HTTP_HOST} (.*)
+    #RewriteCond %{REQUEST_URI} /$ [NC]
+    RewriteCond %{REQUEST_URI} ^(.*)(/)$ [NC]
+        RewriteRule . %1 [L,R=301]
+
+    RewriteCond %{REQUEST_URI} ^([a-zA-Z0-9/_\-.]*)\.json$
+        RewriteRule ^([a-zA-Z0-9/_\-.]*)$ index.php?_format=json&_request=/$1 [QSA,L]
+    RewriteRule ^([a-zA-Z0-9/_\-.]*)$ index.php?_format=html&_request=/$1 [QSA,L]
+
+
+</IfModule>
+#TimeZone
+<IfModule mod_setenvif.c>
+    SetEnv TZ Europe/Moscow
+</IfModule>
+#Подпись при ошибках
+ServerSignature Off
+
+#Сжимаем некоторые файлы
+<ifModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
+</ifModule>
+
+<IfModule mod_headers.c>
+    #кэшировать html и htm файлы на один день
+    <FilesMatch "\.(html|htm)$">
+        #Header set Cache-Control "max-age=43200"
+        Header unset Cache-Control
+    </FilesMatch>
+    #кэшировать css, javascript и текстовые файлы на одну неделю
+    <FilesMatch "\.(js|css|txt)$">
+        Header unset Cache-Control
+        #Header set Cache-Control "max-age=604800"
+    </FilesMatch>
+    #кэшировать флэш и изображения на месяц
+    <FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png)$">
+        Header set Cache-Control "max-age=2592000"
+    </FilesMatch>
+    #отключить кэширование
+    <FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+        Header unset Cache-Control
+    </FilesMatch>
+</IfModule>
+
+<ifModule mod_exp1ires.c>
+    ExpiresActive On
+    #по умолчанию кеш в 5 секунд
+    ExpiresDefault "access plus 5 seconds"
+    #кэшировать флэш и изображения на месяц
+    ExpiresByType image/x-icon "access plus 2592000 seconds"
+    ExpiresByType image/jpeg "access plus 2592000 seconds"
+    ExpiresByType image/png "access plus 2592000 seconds"
+    ExpiresByType image/gif "access plus 2592000 seconds"
+    ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+    #кэшировать css, javascript и текстовые файлы на одну неделю
+    ExpiresByType text/css "access plus 604800 seconds"
+    ExpiresByType text/javascript "access plus 604800 seconds"
+    ExpiresByType application/javascript "access plus 604800 seconds"
+    ExpiresByType application/x-javascript "access plus 604800 seconds"
+    #кэшировать html и htm файлы на один день
+    ExpiresByType text/html "access plus 43200 seconds"
+    #кэшировать xml файлы на десять минут
+    ExpiresByType application/xhtml+xml "access plus 600 seconds"
+</ifModule>
+
+# Bad Rquest
+ErrorDocument 400 /400.html
+# Authorization Required
+ErrorDocument 401 /401.html
+# Forbidden
+ErrorDocument 403 /403.html
+# Not found
+ErrorDocument 404 /404.html
+# Method Not Allowed
+ErrorDocument 405 /405.html
+# Request Timed Out
+ErrorDocument 408 /408.html
+# Request URI Too Long
+ErrorDocument 414 /414.html
+# Internal Server Error
+ErrorDocument 500 /500.html
+# Not Implemented
+ErrorDocument 501 /501.html
+# Bad Gateway
+ErrorDocument 502 /502.html
+# Service Unavailable
+ErrorDocument 503 /503.html
+# Gateway Timeout
+ErrorDocument 504 /504.html

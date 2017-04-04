@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=cyrillic,cyrillic-ext,latin);
+body{
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:16px;
+}
+@page{
+    margin: 5px;
+}
+h6{margin: 0;}
+.container{
+    width:95%;margin: 0 auto;
+}
+.top-title{
+    text-align: right;
+    font-size:1.2em;
+    color:#c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
+}
+.header > table{
+    border: 0;
+    border-collapse: collapse;
+    width:100%;
+}
+.logo{width:170px;}
+.logo img{width:170px;}
+
+.contacts{width:300px;vertical-align: middle;  }
+h1{display: inline-block;font-size:15px;margin: 0; }
+
+.header td.data{vertical-align: top;width:214px;}
+.header td.data p{text-align: right;margin:5px 0;font-size:14px;}
+
+.container.content {padding-top:10px;padding-bottom: 10px;}
+.content p{margin:5px 0;}
+
+
+
+#delivery_address{
+    margin-top:20px;
+    width:100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+#delivery_address td,#delivery_address th{text-align: left;font-size: 0.8em;border:1px solid #c0c0c0;font-weight: bold;padding: 10px;}
+#delivery_address th{padding: 5px 10px;}
+#delivery_address td p{margin:5px 0;}
+
+#data_tale{
+    margin-top:20px;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+#data_tale td, #data_tale th{padding: 10px;border:1px solid #c0c0c0}
+#data_tale .itog{text-align: right; font-weight: bold;}
+#data_tale .tovar{width:40%;}

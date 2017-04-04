@@ -1,0 +1,12 @@
+/**Animation**/
+.idialog.animated.ng-hide-add, .idialog.animated.ng-hide-remove {-webkit-animation:zoomInUp 1s; animation:zoomInUp 1s;}
+.idialog.animated.ng-hide-add {display:block !important;}
+.idialog.animated.ng-hide {-webkit-animation:zoomOutUp 1s; animation:zoomOutUp 1s;}
+
+/**Overlay**/
+.popup-overlay{
+    position:fixed;
+    top:0;right:0;bottom:0;left:0;
+    background:rgba(0,0,0,0.5);
+    z-index:90;
+}

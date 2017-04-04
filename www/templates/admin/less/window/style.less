@@ -1,0 +1,47 @@
+@import '../variables';
+@import '../mixins';
+@import "variables";
+
+.window.new{
+  background-color: @windowBackground;
+  width: @windowWidth;
+  position: relative;
+  .border-box();
+  font-size: 14px;
+  >.header{
+    &.filters{
+      .flex();
+      .justify-content(space-between);
+      .align-items(center);
+    }
+  }
+  &.trans{opacity: 0.5;}
+  > div{
+    box-sizing: border-box;
+    padding: 0 @windowPaddingRight 0 @windowPaddingLeft;
+    &:first-of-type{padding: @windowPaddingTop @windowPaddingRight 0 @windowPaddingLeft;}
+    &:last-of-type{padding: 0 @windowPaddingRight @windowPaddingBottom @windowPaddingLeft;}
+  }
+
+  .height-33{height:33px !important;.same(".same-height",height,33px)}
+  .height-28{height:28px !important;.same(".same-height",height,28px)}
+  .height-250{height:250px !important;.same(".same-height",height,250px)}
+  .height-100{height:100px !important;.same(".same-height",height,100px)}
+  .width-75{width:75px !important;.same(".same-width", width, 75px)}
+  .width-100{width:100px !important;.same(".same-width", width, 100px)}
+  .width-125{width:125px !important;.same(".same-width", width, 125px)}
+  .width-150{width:150px !important;.same(".same-width", width, 150px)}
+  .width-200{width:200px !important;.same(".same-width", width, 200px)}
+  .width-250{width:250px !important;.same(".same-width", width, 250px)}
+  .width-300{width:300px !important;.same(".same-width", width, 300px)}
+  .width-350{width:350px !important;.same(".same-width", width, 350px)}
+  .width-450{width:450px !important;}
+
+  @import "select-box";
+  @import "data-table";
+  @import "data-list";
+  @import "md-table";
+  @import "light-gray-block";
+  @import "loading-block";
+  @import "tags-list";
+}

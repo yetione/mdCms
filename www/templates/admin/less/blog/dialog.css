@@ -1,0 +1,7 @@
+.blog-edit-category > .content {
+  max-height: 80%;
+  overflow-y: auto;
+}
+.blog-edit-category .light-gray-block span.label {
+  width: 150px;
+}

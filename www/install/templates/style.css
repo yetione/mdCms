@@ -1,0 +1,81 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic-ext,cyrillic);
+body{margin:0px;padding:0px; /*overflow: hidden;*/ width:100%;height:100%;position: absolute; background-color:#333333}
+header{
+    position:fixed;
+    float: left;
+    top:0;
+    left:0;
+    width:100%;
+    height: 90px;
+    z-index: 10;
+}
+
+#head-top{
+    position:relative;
+    float:left;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background: url("images/top.png") repeat-x;
+}
+
+#head-status{
+    position: relative;
+    float:left;
+    left:0;
+    width:100%;
+    height:16px;
+    background-color: #000000;
+    padding: 7px 0;
+    font-family: 'Open Sans', sans-serif;
+    color:#c9c9c9;
+}
+
+#head-top-logo{
+    position:relative;
+    float: left;
+    background: url("images/logo.png") no-repeat center;
+    width:385px;
+    height: 60px;
+}
+
+#wrapper{
+    margin: 102px auto 10px;
+    width: 500px;
+    background-color: #CCC;
+    min-height: 90px;
+    padding: 10px;
+}
+
+h1, h3, h2{
+    font-family: 'Open Sans', sans-serif;
+    color: #1A1A1A;
+    font-weight: 300;
+}
+
+#header{
+    margin: 0;
+}
+
+label{
+    font-family: 'Open Sans', sans-serif;
+    font-size:10pt;
+}
+
+#install{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    border: none;
+    background-color: green;
+    color: #ffffff;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#success{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15pt;
+    color: green;
+}

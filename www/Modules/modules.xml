@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QSModules>
+    <AdminPanel>
+        <Enabled>1</Enabled>
+        <AutoInstall>0</AutoInstall>
+    </AdminPanel>
+
+    <Users>
+        <Enabled>1</Enabled>
+        <AutoInstall>0</AutoInstall>
+    </Users>
+    <GeoLocation>
+        <Enabled>1</Enabled>
+        <Configs>
+            <DefaultCityName value="Москва" />
+        </Configs>
+    </GeoLocation>
+    <Restful>
+        <Enabled>1</Enabled>
+    </Restful>
+    <Kernel>
+        <Enabled>1</Enabled>
+        <AutoInstall>0</AutoInstall>
+    </Kernel>
+    <Food>
+        <Enabled>1</Enabled>
+        <Configs>
+            <DefaultCityName value="Санкт-Петербург" />
+        </Configs>
+    </Food>
+    <Blog>
+        <Enabled>1</Enabled>
+    </Blog>
+    <FileManager>
+        <Enabled>1</Enabled>
+    </FileManager>
+
+
+</QSModules>

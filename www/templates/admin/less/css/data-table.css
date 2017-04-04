@@ -1,0 +1,59 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #111519;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+.data-table thead {
+  background-color: #212830;
+  text-align: left;
+}
+.data-table thead th {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: 'Open Sans', sans-serif;
+  color: #818a94;
+  font-size: 12px;
+  border-bottom: 2px solid #313c47;
+}
+.data-table th,
+.data-table td {
+  padding: 0;
+  margin: 0;
+}
+.data-table tbody {
+  position: relative;
+}
+.data-table tbody td {
+  background-color: #111519;
+  color: #4d5258;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.data-table tbody td.actions {
+  text-align: right;
+}
+.data-table tbody td.actions a {
+  text-decoration: none;
+  color: #4d5258;
+  border-bottom: 1px dashed;
+  transition: all .8s ease;
+  -webkit-transition: all .8s ease;
+  -moz-transition: all .8s ease;
+}
+.data-table tbody td.actions a:hover {
+  color: #ffffff;
+}
+.data-table tbody tr {
+  position: relative;
+}
+.data-table tbody tr:hover td {
+  background-color: #14191e;
+  color: #a5aeb8;
+}

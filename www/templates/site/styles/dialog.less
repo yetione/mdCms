@@ -1,0 +1,94 @@
+@grey: rgb(36,36,36);
+@green: rgb(140,198,63);
+@green-dark: rgb(112,158,50);
+@orange: rgb(236,194,11);
+@orange-dark: rgb(189,155,9);
+@border: 1px solid rgb(230,230,230);
+@border-dark: 1px solid rgb(180,180,180);
+.flex()               {display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;}
+.justify-content(@jc) {-webkit-justify-content: @jc; -moz-justify-content: @jc; justify-content: @jc;}
+.modal {
+  //padding: 20px;
+  //background: rgb(36,36,36);
+  padding: 30px 20px 40px;
+  background-color: @grey;
+  color: white;
+  text-align: center;
+  p {
+    margin: 0 0 20px;
+
+  }
+  .buttons {
+    text-align: center;
+    button {
+      margin: 0 10px;
+    }
+  }
+  >div{
+    box-sizing: border-box;
+    padding: 0 15px 0 15px;
+    &:first-child{padding: 15px 15px 0 15px;}
+    &:last-child{padding: 0 15px 15px 15px;}
+  }
+  &.cityconfirm{
+    padding: 40px;
+  }
+  .header{
+    border-bottom: 1px solid #709e32;
+    .title{
+      margin: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    padding: 10px !important;
+  }
+  .content{
+    p{margin: 15px 0;}
+  }
+  .selection {
+    .flex;
+    margin: 0 10px 20px;
+    form {
+      div {
+        input {
+          height: 30px;
+          padding: 0 5px;
+          border: none;
+        }
+        &:first-child {
+          input {
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+    .socialsauth {
+      margin-left: 20px;
+      padding: 10px 20px;
+      background: shade(@grey, 10%);
+      color: rgba(255,255,255, .8);
+      font-size: .8rem;
+      p {
+        margin-bottom: 5px;
+      }
+      .links {
+        .flex;
+        .justify-content(center);
+        img {
+          cursor: pointer;
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+          &:hover {
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.idialog{
+  min-height: 80px !important;
+}

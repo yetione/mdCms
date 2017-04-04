@@ -1,0 +1,157 @@
+<div ng-controller="shop.promoCodePage as rightCtrl">
+    <div class="category-item-block">
+        <div class="header">
+            <span class="cat-name">Промо-коды</span>
+        </div>
+        <div class="window category-products-list">
+            <div class="header">
+                <span class="label">Список кодов</span>
+                <button ng-click="rightCtrl.editItem()" class="height-33" style="margin-left:15px;">Добавить новый</button>
+            </div>
+            <div class="content">
+                <section style="height: 350px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th style="width:100px;">Код</th>
+                            <th style="width:170px;">Дата окончания</th>
+                            <th style="width:600px">Описание</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in rightCtrl.codesList track by c.Id" >
+                            <td ng-click="rightCtrl.editItem(c)">{{c.Code}}</td>
+                            <td ng-click="rightCtrl.editItem(c)">{{c.ExpireDate.format('LLL')}}</td>
+                            <td ng-click="rightCtrl.editItem(c)"><p>{{c.Description}}</p></td>
+                            <td class="actions">
+                                <a ng-click="rightCtrl.deleteItem(c)">Удалить</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="product-info-block">
+
+        <form name="PromoCodeEditForm" ng-submit="rightCtrl.saveActiveItem()" novalidate ng-hide="rightCtrl.activeItem === null">
+            <div class="window product-add">
+                <div class="header"><span class="label" ng-show="!rightCtrl.activeItem.Id">Добавление промо-кода</span><span class="label" ng-show="rightCtrl.activeItem.Id">Редактирование промо-кода</span></div>
+                <div class="content">
+                    <section>
+                        <div class="light-gray-block">
+                            <span class="label">Код</span>
+                            <input type="text" class="gray light-gray height-28 width-450" ng-model="rightCtrl.activeItem.Code" name="Code" autocomplete="off">
+                        </div>
+
+                        <div class="light-gray-block">
+                            <span class="label">Описание</span>
+                            <input type="text" class="gray light-gray height-28 width-450" ng-model="rightCtrl.activeItem.Description" name="Description" autocomplete="off">
+                        </div>
+                        <div class="light-gray-block">
+                            <span class="label">Активен с:</span>
+                            <div style="display: inline-block;position: relative">
+                                <input type="text"
+                                       view="hours"
+                                       date-time id="PromoCode_ActiveItemStartDate"
+                                       ng-model="rightCtrl.activeItem.StartDate"
+                                       format="LLL"
+                                       class="gray light-gray height-28 width-450"
+                                       name="StartDate" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="light-gray-block">
+                            <span class="label">Активен до:</span>
+                            <div style="display: inline-block;position: relative">
+                                <input type="text"
+                                       view="hours"
+                                       date-time id="PromoCode_ActiveItemExpireDate"
+                                       ng-model="rightCtrl.activeItem.ExpireDate"
+                                       format="LLL"
+                                       class="gray light-gray height-28 width-450"
+                                       name="ExpireDate" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="light-gray-block" >
+                            <span class="label">Статус:</span>
+                            <select-box  source="rightCtrl.actileList" ng-model="rightCtrl.activeItem.ActiveModel" class="width-450 height-33 light-gray">
+                                <sb-header>{{$select.selected.Name}}</sb-header>
+                                <sb-list>
+                                    <sb-list-item ng-repeat="item in $select.items track by item.Id">
+                                        <span class="Name">{{item.Name}}</span>
+                                    </sb-list-item>
+                                </sb-list>
+                            </select-box>
+                        </div>
+                        <div class="light-gray-block">
+                            <span class="label">Тип кода:</span>
+                            <select-box  source="rightCtrl.PCTypes" ng-model="rightCtrl.activeItem.TypeModel" class="width-450 height-33 light-gray">
+                                <sb-header>{{$select.selected.Name}}</sb-header>
+                                <sb-list>
+                                    <sb-list-item ng-repeat="item in $select.items track by item.Id">
+                                        <span class="Name">{{item.Name}}</span>
+                                    </sb-list-item>
+                                </sb-list>
+                            </select-box>
+                        </div>
+                        <div class="light-gray-block" ng-if="rightCtrl.activeItem.TypeModel.Id == 2">
+                            <span class="label">Применен:</span>
+                            <select-box  source="rightCtrl.usedList" ng-model="rightCtrl.activeItem.UsedModel" class="width-450 height-33 light-gray">
+                                <sb-header>{{$select.selected.Name}}</sb-header>
+                                <sb-list>
+                                    <sb-list-item ng-repeat="item in $select.items track by item.Id">
+                                        <span class="Name">{{item.Name}}</span>
+                                    </sb-list-item>
+                                </sb-list>
+                            </select-box>
+                        </div>
+                        <div class="light-gray-block">
+                            <span class="label">Действует на: </span>
+                            <select-box  source="rightCtrl.codeTypes" ng-model="rightCtrl.activeItem.CodeTypeModel" class="width-450 height-33 light-gray">
+                                <sb-header>{{$select.selected.Name}}</sb-header>
+                                <sb-list>
+                                    <sb-list-item ng-repeat="item in $select.items track by item.Id">
+                                        <span class="Name">{{item.Name}}</span>
+                                    </sb-list-item>
+                                </sb-list>
+                            </select-box>
+                        </div>
+                    </section>
+                    <section ng-show="rightCtrl.activeItem.Data.Type == 1">
+                        <div class="light-gray-block price">
+                            <span class="label">Сумма скидки</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.activeItem.Data.Options.Value" name="OptionsValue" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                            <select class="gray light-gray height-28" ng-model="rightCtrl.activeItem.Data.Options.Units" name="OptionsUnits">
+                                <option value="percents">%</option>
+                                <option value="value">ру.</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section ng-show="rightCtrl.activeItem.Data.Type == 2">
+                        <div class="light-gray-block price">
+                            <span class="label">Сумма скидки</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.activeItem.Data.Options.Value" name="OptionsValue" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                            <select class="gray light-gray height-28" ng-model="rightCtrl.activeItem.Data.Options.Units" name="OptionsUnits">
+                                <option value="percents">%</option>
+                                <option value="value">ру.</option>
+                            </select>
+                        </div>
+                    </section>
+
+                </div>
+                <div class="footer">
+                    <input type="submit" class="button" value="Сохранить" ng-disabled="PromoCodeEditForm.$invalid" ng-hide="!PromoCodeEditForm.$dirty">
+                    <!--<button type="submit">Сохранить</button>-->
+                    <!--<button type="button" ng-click="rightCtrl.deleteActiveItem()" ng-show="rightCtrl.activeItem.Id > 0">Удалить</button>-->
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,15 @@
+---Application events---
+Application.Load: post hook, {application: QSAplication, microtime: int}
+Application.StartSession: pre/post hook, {session:Session}
+Application.Init: pre/post hook, {init_time: int, application:QSApplication}
+Application.buildResponse: pre/post hook, pre: {}; post:{response:Response}
+Application.Route: pre/post hook, pre: {request_url:string, application:QSApplication}, post:{... route:Route}
+Application.Close: post hook, {microtime:int, application:QSApplication}
+
+---Session events---
+Session.regenerate_id: post hook, {session:Session, old_id:string}
+Session.not_security: post hook, {session:Session, old_id:string}
+Session.id_expire: post hook, {session:Session, old_id:string}
+
+---Users events---
+Users.login: pre/post hook, {login:string, password:string}

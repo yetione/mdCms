@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QSDatabase>
+
+    <table name="student" alias="Student" description="">
+        <column name="institute_id" alias="InstituteId" required="true" type="integer" size="" scale="" defaultValue="" description="" lazyLoad="false" valueSet="" unsigned="true"/>
+        <column name="group_id" required="true" type="integer" unsigned="true"/>
+        <column name="course" type="integer" defaultValue="1" unsigned="true"/>
+        <column name="name" type="varchar" required="true" size="100"/>
+        <column name="med_group" type="enum" valueSet="основная,подготовительная,специальная" required="true"/>
+        <column name="department" type="enum" valueSet="основное,специальное,спортивное" required="true"/>
+        <column name="specialization_id" type="integer" required="true" unsigned="true"/>
+        <column name="teacher_id" type="integer" required="true" unsigned="true" />
+        <column name="time_1" type="varchar" size="45" />
+        <column name="time_2" type="varchar" size="45" />
+        <column name="student_id" type="varchar" size="45" />
+        <column name="user_id" type="integer" unsigned="true" />
+        <foreign-key foreignTable="institute" name="student-institute" alias="Institute" defaultJoin="inner">
+            <reference local="institute_id" foreign="id"/>
+        </foreign-key>
+        <index name="name-index">
+            <column name="name" size="100"/>
+        </index>
+        <unique name="student_id_unique">
+            <column name="student_id" size="45"/>
+        </unique>
+        <parametr name="Engine" value="InnoDB"/>
+        <parametr name="charset" value="utf8"/>
+    </table>
+
+    <table name="institute">
+        <column name="name" type="varchar" size="45" required="true"/>
+        <column name="full_name" type="varchar" size="150" />
+        <unique name="institute_name_unique">
+            <column name="name" size="45"/>
+        </unique>
+    </table>
+
+    <entity name="User">
+        <property name="login" type="string" length="255"/>
+        <property name="retries" type="integer"/>
+        <property name="retries_1" type="bigint"/>
+        <property name="children" type="smallint"/>
+        <property name="money" type="float"/>
+        <property name="is_reg" type="bool"/>
+        <property name="priveleges" type="array"/>
+        <property name="data" type="object"/>
+        <property name="image" type="blob"/>
+    </entity>
+</QSDatabase>

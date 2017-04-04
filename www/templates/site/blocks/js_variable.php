@@ -1,0 +1,1 @@
+function <?php echo $this->get('name');?>(){return <?php echo var_export($this->get('value'));?>;}

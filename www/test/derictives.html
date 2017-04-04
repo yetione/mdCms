@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<window window-id="category-products" actions="close,minimize" class="category-window">
+    <window-header class="category-window-header header">Категория {{category.Name}}</window-header>
+    <window-content>
+        <section>
+            <select-box source="ctrl.selectBoxItems" on-select="ctrl.onItemSelect($item)" ng-model="ctrl.activeSelectItem" class="c-select-box" null-item="ctrl.nullItem">
+                <item>$item.</item>
+            </select-box>
+        </section>
+        <section>
+            <data-table source="ctrl.data" class="categories-table">
+                <rows>
+                    <row label="Название">$item.Name</row>
+                    <row label="Описание"><p>$item.Description</p></row>
+                    <row label="" class="actions"><a ng-click="ctrl.editItem($item)">Изменить</a></row>
+                </rows>
+            </data-table>
+        </section>
+    </window-content>
+    <window-footer>
+        <p>Список категорий</p>
+    </window-footer>
+</window>
+</body>
+</html>

@@ -1,0 +1,101 @@
+.data-list {
+  font-family: 'Open Sans', sans-serif;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  /*div.head{
+    background-color: @inputBackgroundColor;
+    font-size: 12px;
+    border-bottom: 2px solid #313c47;
+    span.cell{font-weight: bold;color:#818a94;}
+  }*/
+}
+.data-list span.cell {
+  padding: 0 5px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+.data-list li.row,
+.data-list div.row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  font-size: 12px;
+  border-bottom: 1px dashed rgba(46, 60, 71, 0.5);
+}
+.data-list li.row.head,
+.data-list div.row.head {
+  background-color: #212830;
+  font-size: 12px;
+  border-bottom: 2px solid #313c47;
+  padding: 5px 10px;
+}
+.data-list li.row.head span.cell,
+.data-list div.row.head span.cell {
+  font-weight: bold;
+  color: #818a94;
+}
+.data-list > ul {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+.data-list > ul li {
+  cursor: move;
+}
+.data-list > ul li.row {
+  background-color: #111519;
+  color: #4d5258;
+}
+.data-list > ul li.row > span.actions {
+  text-align: right;
+}
+.data-list > ul li.row > span.actions > a {
+  text-decoration: underline;
+  color: #4d5258;
+}
+.data-list > ul li.row:hover {
+  background-color: #14191e;
+}
+.data-list > ul li.row:hover > span {
+  color: #a5aeb8;
+}
+.data-list > ul li.row:hover > span > a {
+  color: #a5aeb8;
+}
+.data-list > ul li.dndDraggingSource {
+  display: none;
+}
+.data-list > ul li.dndPlaceholder {
+  background-color: #262e37 !important;
+  min-height: 24px;
+}
+.data-list.products-list {
+  width: 100%;
+}
+.data-list.products-list span.name {
+  flex-basis: 110px;
+}
+.data-list.products-list span.category {
+  flex-basis: 80px;
+}
+.data-list.products-list span.description {
+  flex-basis: 600px;
+}
+.data-list.products-list span.actions a {
+  text-decoration: underline;
+}

@@ -1,0 +1,21 @@
+<div class="block-top">
+    <nav>
+        <a class="active">Модуль</a>
+    </nav>
+</div>
+
+<div class="block-bottom">
+
+
+    <div class="categories-list-block" ng-controller="order.centerColumn as orderCenterCtrl">
+        <ul class="categories-list">
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'orders'}" ng-click="orderCenterCtrl.showOrders()">Список заказов</li>
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'docs'}" ng-click="orderCenterCtrl.showDocs()">Документы</li>
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'manage'}" ng-click="orderCenterCtrl.showManage()">Управление</li>
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'stocks'}" ng-click="orderCenterCtrl.showStocks()">Точки самовывоза</li>
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'couriers'}" ng-click="orderCenterCtrl.showCouriers()">Курьеры</li>
+            <li ng-class="{active:orderCenterCtrl.activeAction == 'orders_list'}" ng-click="orderCenterCtrl.showOrdersList()">Orders list</li>
+
+        </ul>
+    </div>
+</div>

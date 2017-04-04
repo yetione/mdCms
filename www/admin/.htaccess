@@ -1,0 +1,15 @@
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+DirectoryIndex index.php
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    #RewriteBase /beta/admin
+    RewriteCond %{HTTP_HOST} (.*)
+    RewriteCond %{REQUEST_URI} /$ [NC]
+    #RewriteRule ^admin/(.*)(/)$ /admin/index.php?request=$1 [QSA, L]
+    RewriteRule ^(.*)(/)$ $1 [L,R=301]
+    RewriteRule ^([a-zA-Z0-9/_-]*)$ index.php?_request=/$1 [QSA,L]
+    #RewriteCond %{HTTP_HOST} ^black-web
+    #RewriteRule (.*) http://www.black-web.ru/$1 [R=301,L]
+    #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+    #RewriteRule ^index\.php$ http://www.black-web.ru/ [R=301,L]
+</IfModule>

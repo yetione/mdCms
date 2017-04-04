@@ -1,0 +1,76 @@
+@import '../variables';
+@import '../mixins';
+@import 'variables';
+
+.data-list{
+  font-family: @fontOpenSans;
+  .displayFlex();
+  flex-direction: column;
+  /*div.head{
+    background-color: @inputBackgroundColor;
+    font-size: 12px;
+    border-bottom: 2px solid #313c47;
+    span.cell{font-weight: bold;color:#818a94;}
+  }*/
+  span.cell{
+    padding:0 5px;
+    box-sizing: border-box;
+    flex-grow:1;
+  }
+  li.row, div.row{
+    .displayFlex();
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding:10px 10px;
+    font-size: 12px;
+    border-bottom: 1px dashed rgba(46,60,71, 0.5);
+    &.head{
+      background-color: @inputBackgroundColor;
+      font-size: 12px;
+      border-bottom: 2px solid #313c47;
+      padding: 5px 10px;
+      span.cell{font-weight: bold;color:#818a94;}
+    }
+  }
+  >ul{
+    padding:0; margin: 0;
+    .displayFlex();
+    flex-direction: column;
+    li{
+      cursor: move;
+      &.row{
+        background-color: #111519;
+        color: #4d5258;
+        >span.actions{
+          text-align: right;
+          >a{text-decoration: underline;color:#4d5258;}
+        }
+        &:hover{
+          background-color: #14191e;
+          >span{
+            color:#a5aeb8;
+            >a{color:#a5aeb8}
+          }
+        }
+      }
+      &.dndDraggingSource{display: none;}
+      &.dndPlaceholder{
+        background-color: #262e37 !important;
+        min-height: 24px;
+      }
+    }
+  }
+  &.products-list{
+    width: 100%;
+
+    //span.name{width:110px;}
+    span.name{flex-basis:110px;}
+    //span.category{width:80px;}
+    span.category{flex-basis:80px;}
+    //span.description{width:600px;}
+    span.description{flex-basis:600px;}
+    span.actions{a{text-decoration: underline;}}
+
+  }
+}

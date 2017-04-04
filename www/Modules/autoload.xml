@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QSAutoLoad>
+    <All>
+        <Kernel />
+        <Users />
+    </All>
+
+    <HTML>
+        <GeoLocation />
+        <Food />
+    </HTML>
+
+    <JSON>
+
+    </JSON>
+</QSAutoLoad>

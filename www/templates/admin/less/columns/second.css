@@ -1,0 +1,36 @@
+html body .wrapper .column.second {
+  flex-grow: 0;
+  width: 315px;
+  background-color: #1c232c;
+}
+html body .wrapper .column.second .block-top {
+  background-color: #262e37;
+}
+html body .wrapper .column.second .block-top nav {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  box-sizing: border-box;
+  height: 100%;
+}
+html body .wrapper .column.second .block-top nav a {
+  display: inline-block;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #313c47;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  /*height:25px;*/
+  padding: 5px 15px;
+  color: #58636f;
+  text-decoration: none;
+  margin: 0 5px;
+}
+html body .wrapper .column.second .block-top nav a.active {
+  background-color: #1c232c;
+}

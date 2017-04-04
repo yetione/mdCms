@@ -1,0 +1,165 @@
+<div ng-controller="shop.rightColumn as rightCtrl">
+    <div class="category-item-block">
+        <div class="header">
+            <span class="cat-name">{{rightCtrl.category.Name}}</span>
+        </div>
+        <div class="window category-products-list">
+            <div class="header">
+                <span class="label">Список блюд</span>
+                <div style="display: inline-block;position: relative">
+                    <input type="text" placeholder="Быстрый поиск" ng-model="rightCtrl.filters.text" class="gray width-150 height-33 search" style="padding-right: 20px;width:200px;" autocomplete="off">
+                    <img src="templates/admin/images/search.png" style="position: absolute;right: 3px;top: 9px;">
+                </div>
+                <div class="select-box width-150 height-33" select-inline="filter">
+                    <div class="header" ng-click1="rightCtrl.filters.toggleList()">
+                        <p class="label">{{rightCtrl.filters.type.Name}}</p>
+                        <img class="arrow" ng-src="{{rightCtrl.filters.arrowImg}}">
+                    </div>
+                    <div class="list-wrapper">
+                        <ul ng-show1="rightCtrl.filters.showList">
+                            <li ng-click="rightCtrl.filters.byType('all')">{{rightCtrl.filters.allType.Name}}</li>
+                            <li ng-repeat="type in rightCtrl.productTypes" >
+                                <p ng-click="rightCtrl.filters.byType(type)" class="label">{{type.Name}}</p>
+                                <span ng-click="rightCtrl.editProductType(type)" title="Редактировать категорию" style="float: right" class="icon"><img src="templates/admin/images/edit.png"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon height-33" title="Добавить категорию" ng-click="rightCtrl.addProductType()"><img src="templates/admin/images/add.png"></div>
+                <button ng-click="rightCtrl.addProduct(rightCtrl.category.Id)" class="height-33" style="margin-left:15px;">Добавить блюдо</button>
+            </div>
+            <div class="content">
+                <section style="height: 350px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th style="width:330px;" class="name">Название блюда</th>
+                            <th style="width:80px;" class="type">Категория</th>
+                            <th class="description">Описание</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="product in rightCtrl.products |  filter:rightCtrl.filters.filter" ng-click="rightCtrl.editProduct(product.Id)">
+                            <td class="name">{{product.Name}}</td>
+                            <td class="type">{{rightCtrl.getProductTypeById(product.TypeId).Name}}</td>
+                            <td class="description"><p>{{product.Description}}</p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="product-info-block">
+
+        <form name="ProductEditForm" ng-submit="rightCtrl.saveProduct()" novalidate>
+            <div class="window product-add">
+                <div class="header"><span class="label">{{rightCtrl.editProductTitle}}</span></div>
+                <div class="content">
+                    <section>
+                        <div style="display: inline-block;vertical-align: top;width:765px;">
+                        <input id="product-name" type="text" ng-model="rightCtrl.currentProduct.Name" class="gray height-33" style="width: 568px;" placeholder="Название" name="Name" required autocomplete="off">
+                        <div class="select-box width-150 height-33" select-inline="edit">
+                            <div class="header" ng-click1="rightCtrl.productTypeList.toggleList()">
+                                <p class="label">{{rightCtrl.productTypeList.activeItem.Name}}</p>
+                                <img class="arrow" ng-src="{{rightCtrl.productTypeList.arrowImg}}">
+                            </div>
+                            <div class="list-wrapper">
+                                <ul ng-show1="rightCtrl.productTypeList.showList">
+                                    <!--<li ng-click="rightCtrl.productTypeList.setActiveItem(rightCtrl.productTypeList.defaultItem)"><p class="label">{{rightCtrl.productTypeList.defaultItem.Name}}</p></li>-->
+                                    <li ng-repeat="type in rightCtrl.productTypes" >
+                                        <p ng-click="rightCtrl.productTypeList.setActiveItem(type)" class="label">{{type.Name}}</p>
+                                        <span ng-click="rightCtrl.editProductType(type)" title="Редактировать категорию" style="float: right;margin-top: 1px;" class="icon"><img src="templates/admin/images/edit.png"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="icon height-33" title="Добавить категорию" ng-click="rightCtrl.addProductType()"><img src="templates/admin/images/add.png"></div>
+                        <textarea ng-model="rightCtrl.currentProduct.Description" class="gray" placeholder="Описание" name="Description"></textarea>
+                        </div>
+                        <div class="image-block">
+                            <p style="font-weight: bold">Изображение <span ng-click="rightCtrl.setDefaultProductImage()" style="float:right;cursor: pointer;vertical-align: middle;"><img src="templates/admin/images/close.png"></span></p>
+                            <img ng-src="{{rightCtrl.currentProduct.Image}}" width="210" height="200" ng-show="rightCtrl.showProductThumb">
+
+
+                            <div ng-repeat="item in rightCtrl.uploader.queue">
+                                <div ng-show="rightCtrl.uploader.isHTML5" ng-thumb="{ file: item._file, height: 200, width:210 }"></div>
+                            </div>
+                            <label class="file-upload-btn">
+                                <span class="button height-33">Загрузить</span>
+
+                                <input type="file" name="Image" nv-file-select="" uploader="rightCtrl.uploader">
+                            </label>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="light-gray-block">
+                            <span class="label">кКал</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.Calorie" name="Calorie" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+
+                        <div class="light-gray-block">
+                            <span class="label">белки</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.Proteins" name="Proteins" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+
+                        <div class="light-gray-block">
+                            <span class="label">углеводы</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.Carbs" name="Carbs" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+
+                        <div class="light-gray-block">
+                            <span class="label">жиры</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.Fats" name="Fats" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+
+                        <div class="light-gray-block">
+                            <span class="label">вес (гр.)</span>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.Weight" name="Fats" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+                    </section>
+                    <section>
+                        <div class="light-gray-block price">
+                            <span class="label">Цена (руб.)</span>
+                            <select class="gray light-gray height-28" ng-model="rightCtrl.activePrice">
+                                <option value="spb">СПБ</option>
+                                <option value="msk">МСК</option>
+                            </select>
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.PriceSpb" ng-show="rightCtrl.activePrice=='spb'" name="PriceSpb" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                            <input type="text" class="gray light-gray height-28" ng-model="rightCtrl.currentProduct.PriceMsk" ng-show="rightCtrl.activePrice=='msk'" name="PriceMsk" ng-pattern="rightCtrl.onlyDigits" autocomplete="off">
+                        </div>
+                    </section>
+
+                </div>
+                <div class="footer">
+                    <input type="submit" class="button" value="Сохранить" ng-disabled="ProductEditForm.$invalid" ng-show="ProductEditForm.$dirty">
+                    <!--<button type="submit">Сохранить</button>-->
+                    <div class="tooltip" ng-show="ProductEditForm.$invalid">
+                        <span>Функция недоступна.<br>
+                            <span ng-show="ProductEditForm.$error.required">Не заполнены обязательные поля:
+                                <span ng-show="ProductEditForm.Name.$error.required">название</span>
+                                <span ng-show="ProductEditForm.Type.$error.required">тип продукта</span>
+                            <br></span>
+                            <span ng-show="ProductEditForm.$error.pattern">Данные введены не правильно в поля:
+                                <span ng-show="ProductEditForm.Calorie.$error.pattern">кКал </span>
+                                <span ng-show="ProductEditForm.Proteins.$error.pattern">белки </span>
+                                <span ng-show="ProductEditForm.Carbs.$error.pattern">углеводы </span>
+                                <span ng-show="ProductEditForm.Fats.$error.pattern">жиры </span>
+                                <span ng-show="ProductEditForm.PriceSpb.$error.pattern">цена СПб </span>
+                                <span ng-show="ProductEditForm.PriceMsk.$error.pattern">цена МСК </span>
+                            </span>
+
+                        </span>
+                    </div>
+                    <button type="button" ng-click="rightCtrl.removeProduct(rightCtrl.currentProduct.Id)" ng-show="rightCtrl.currentProduct.Id > 0">Удалить</button>
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+</div>

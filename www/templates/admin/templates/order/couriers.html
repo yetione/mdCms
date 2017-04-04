@@ -1,0 +1,55 @@
+<div class="content" ng-controller="order.couriersPage as couriersPage">
+    <div class="category-item-block orders-layout">
+        <div class="header">
+            <span class="cat-name">Курьеры</span>
+        </div>
+
+        <div class="window order-window" style="margin-top:30px;" >
+            <div class="header">
+                <span class="label">Список курьеров</span>
+                <select-box source="couriersPage.cities" on-select="couriersPage.table.onCitySelect($item, $event, $isNull)" ng-model="couriersPage.table.activeCity" class="width-150 height-33">
+                    <sb-header class="c-select-box-header pl">{{$select.selected.Name}}</sb-header>
+                    <sb-list>
+                        <sb-list-item ng-repeat="item in $select.items track by item.Id">
+                            <span class="Name">{{item.Name}}</span> <span class="Machine">({{item.Machine}})</span>
+                        </sb-list-item>
+                    </sb-list>
+                </select-box>
+                <div style="display: inline-block;position: relative">
+                    <input type="text" placeholder="Быстрый поиск" ng-model="couriersPage.table.text" class="gray width-150 height-33 search" style="padding-right: 20px;width:200px;" autocomplete="off">
+                    <img src="templates/admin/images/search.png" style="position: absolute;right: 3px;top: 9px;">
+                </div>
+                <button ng-click="couriersPage.editItem()" class="height-33" style="margin-left:15px;">
+                    <span class="label">Добавить</span>
+                </button>
+            </div>
+            <div class="content">
+                <section>
+                    <table class="data-table" ng-show="!couriersList.listInUpdate">
+                        <thead>
+                        <tr>
+                            <th>Ф.И.О.</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="courier in couriersPage.table.list |filter: {Name:couriersPage.table.text} track by courier.Id" >
+                            <td class="Name" ng-click1="couriersPage.editItem(courier)">{{courier.Name}}</td>
+                            <td class="actions"><a ng-click="couriersPage.editItem(courier)">Изменить</a> <a ng-click="couriersPage.deleteItem(courier)">Удалить</a> </td>
+                        </tr>
+                        <tr ng-show="couriersPage.table.list.length == 0">
+                            <td colspan="2" style="text-align: center">Не найдено курьеров</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+            <section class="loading-block full" ng-show="couriersPage.table.updating">
+                <div class="cssload-jumping">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

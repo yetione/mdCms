@@ -1,0 +1,36 @@
+.custom-select{
+    /*position:relative;*/
+    display:inline-block;
+    background-color: #212830;
+    color: #6e7780;
+    padding: 1px 0 1px 10px;
+    height: 27px;
+    width: 150px;
+    vertical-align: middle;
+}
+
+.custom-select .header{
+    display: block;
+    margin: 5px;
+    font-size:12px;
+    cursor: pointer;
+}
+
+.custom-select ul{
+    background-color: #1a2027;
+    position:absolute;
+    margin:0;
+    padding:10px 0;
+    list-style-type: none;
+    /*display:none;*/
+}
+
+.custom-select ul li{
+    margin:3px 0;
+    padding: 0 5px;
+    cursor:pointer;
+}
+
+.custom-select ul li:hover{
+    background-color: #293948;
+}

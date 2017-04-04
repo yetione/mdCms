@@ -1,0 +1,172 @@
+.displayFlex(){
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.border-box()         {-moz-box-sizing: border-box; box-sizing: border-box;}
+.transform(@prop)     {-webkit-transform: @prop; -ms-transform: @prop; transform: @prop;}
+.flex()               {display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;}
+.align-items(@ai)     {-webkit-align-items: @ai; align-items: @ai;}
+.align-self(@as)      {-webkit-align-self: @as; align-self: @as;}
+.flex-direction(@fd)  {-webkit-flex-direction: @fd; -moz-flex-direction: @fd; flex-direction: @fd;}
+.flex-grow(@fg)       {-webkit-flex-grow: @fg; -moz-flex-grow: @fg; flex-grow: @fg;}
+.flex-shrink(@fs)     {-webkit-flex-shrink: @fs; -moz-flex-shrink: @fs; flex-shrink: @fs;}
+.flex-wrap(@fw)       {-webkit-flex-wrap: @fw; -moz-flex-wrap: @fw; flex-wrap: @fw;}
+.justify-content(@jc) {-webkit-justify-content: @jc; -moz-justify-content: @jc; justify-content: @jc;}
+
+.loading-animation(@fromColor:rgb(142,198,63),@toColor:rgb(127,196,63)){
+  .cssload-jumping{
+    position:relative;
+    display:block;
+    /*margin: 97px auto;*/
+    width:107px;
+  }
+
+  .cssload-jumping, .cssload-jumping * {
+    box-sizing: border-box;
+  }
+
+  .cssload-jumping span {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background: @fromColor;
+    border-radius: 487px;
+    background-clip: padding-box;
+    -o-background-clip: padding-box;
+    -ms-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+  }
+
+  .cssload-jumping span:nth-child(1) {
+    animation: scale 1.3s 0.13s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.3s 0.13s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.3s 0.13s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.3s 0.13s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.3s 0.13s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .cssload-jumping span:nth-child(2) {
+    animation: scale 1.3s 0.26s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.3s 0.26s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.3s 0.26s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.3s 0.26s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.3s 0.26s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .cssload-jumping span:nth-child(3) {
+    animation: scale 1.3s 0.39s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.3s 0.39s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.3s 0.39s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.3s 0.39s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.3s 0.39s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .cssload-jumping span:nth-child(4) {
+    animation: scale 1.3s 0.52s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.3s 0.52s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.3s 0.52s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.3s 0.52s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.3s 0.52s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .cssload-jumping span:nth-child(5) {
+    animation: scale 1.3s 0.65s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.3s 0.65s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.3s 0.65s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.3s 0.65s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.3s 0.65s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+
+
+
+  @keyframes scale {
+    0% {
+      transform: scale(0);
+    }
+    25% {
+      transform: scale(0.9, 0.9);
+      background: @fromColor;
+    }
+    50% {
+      transform: scale(1, 1);
+      margin: 0 3px;
+      background: @toColor;
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @-o-keyframes scale {
+    0% {
+      -o-transform: scale(0);
+    }
+    25% {
+      -o-transform: scale(0.9, 0.9);
+      background: @fromColor;
+    }
+    50% {
+      -o-transform: scale(1, 1);
+      margin: 0 3px;
+      background: @toColor;
+    }
+    100% {
+      -o-transform: scale(0);
+    }
+  }
+
+  @-ms-keyframes scale {
+    0% {
+      -ms-transform: scale(0);
+    }
+    25% {
+      -ms-transform: scale(0.9, 0.9);
+      background: @fromColor;
+    }
+    50% {
+      -ms-transform: scale(1, 1);
+      margin: 0 3px;
+      background: @toColor;
+    }
+    100% {
+      -ms-transform: scale(0);
+    }
+  }
+
+  @-webkit-keyframes scale {
+    0% {
+      -webkit-transform: scale(0);
+    }
+    25% {
+      -webkit-transform: scale(0.9, 0.9);
+      background: @fromColor;
+    }
+    50% {
+      -webkit-transform: scale(1, 1);
+      margin: 0 3px;
+      background: @toColor;
+    }
+    100% {
+      -webkit-transform: scale(0);
+    }
+  }
+
+  @-moz-keyframes scale {
+    0% {
+      -moz-transform: scale(0);
+    }
+    25% {
+      -moz-transform: scale(0.9, 0.9);
+      background: @fromColor;
+    }
+    50% {
+      -moz-transform: scale(1, 1);
+      margin: 0 3px;
+      background: @toColor;
+    }
+    100% {
+      -moz-transform: scale(0);
+    }
+  }
+}

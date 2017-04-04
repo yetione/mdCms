@@ -1,0 +1,29 @@
+@import "mixins";
+@import "variables";
+.shipping-day-block{
+  width: 440px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  .flex();
+  .flex-direction(column);
+  .days-list{
+    .flex();
+    .justify-content(center);
+    .align-items(stretch);
+    align-content: stretch;
+    font-size: 16px;
+    .day{
+      .flex-grow(1);
+      .flex-shrink(1);
+      font-size: 0.8em;
+      flex-basis: 61px;
+      margin: 0 2px;
+      background-color: rgba(255, 255, 255, 0.1);
+      p{
+        color:#ffffff;
+        margin:0;
+      }
+    }
+
+  }
+}

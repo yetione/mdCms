@@ -1,0 +1,130 @@
+<div ng-controller="menu.rightColumn.page as rightCtrl">
+    <div class="category-item-block">
+        <div class="header">
+            <span class="cat-name">Меню</span>
+        </div>
+        <div class="window calendar-window">
+            <div class="header">
+                <span class="label">Дни и даты:</span>
+
+                <button ng-click="rightCtrl.setCurrentDateEnable(0)" class="height-33" style="margin-left:15px;" ng-show="rightCtrl.currentMenuItem.data.Enabled == 1">Отключить выбранный день</button>
+                <button ng-click="rightCtrl.setCurrentDateEnable(1)" class="height-33" style="margin-left:15px;" ng-show="rightCtrl.currentMenuItem.data.Enabled == 0">Включить выбранный день</button>
+                <button ng-click="rightCtrl.saveCurrentMenuItem()" class="height-33" style="margin-left:15px;">Сохранить</button>
+            </div>
+            <div class="content">
+                <section md-calendar="rightCtrl.calendarDate" start-date="rightCtrl.minDate">
+                    {{calendar.daysToPage}}
+                </section>
+            </div>
+            <div class="green-line"></div>
+        </div>
+
+        <div class="window category-window " ng-repeat="category in rightCtrl.currentMenuItem.data.Data track by category.Id" ng-if="category.Public == 1">
+            <div class="header">
+                <span class="label">{{category.Name}}</span>
+            </div>
+            <div class="content">
+                <section style="height: 200px;overflow-y: auto;background-color: #070c12;">
+                    <div class="data-list products-list" ng-hide="rightCtrl.isLoading.MenuItem">
+                        <div class="head row" dnd-nodrag>
+                            <span class="cell name">Название</span>
+                            <span class="cell category">Категория</span>
+                            <span class="cell description">Описание</span>
+                            <span class="cell actions">&nbsp;</span>
+                        </div>
+                        <ul dnd-list="category.Products"
+                                dnd-allowed-types="['category{{category.Id}}']"
+                                class="data-list">
+                            <li ng-repeat="product in category.Products"
+                                dnd-draggable="product"
+                                dnd-effect-allowed="move"
+                                dnd-moved="rightCtrl.onProductMove(product, category, $index, event)"
+                                dnd-type="'category{{category.Id}}'" class="row">
+                                <span class="cell name">{{product.Name}}</span>
+                                <span class="cell category">{{rightCtrl.getProductType(product.TypeId).Name}}</span>
+                                <span class="cell description">{{product.Description}}</span>
+                                <span class="cell actions"><a href="" ng-click="rightCtrl.removeProduct(product)">Удалить</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="loading-block ng-hide" ng-show="rightCtrl.isLoading.MenuItem">
+                        <div class="cssload-jumping">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+
+        <h3 style="margin-top:30px;margin-bottom: 10px;">Добавление позиций в меню</h3>
+        <p style="margin-top:10px;">*добавление в меню по выбранной подкатегории производится кликом на еденице товара.</p>
+
+        <div class="window category-products-list" style="margin-top:10px;">
+            <div class="header">
+
+                <div class="select-box width-150 height-33" select-inline="category">
+                    <div class="header">
+                        <p class="label">{{rightCtrl.categoryFilter.items[rightCtrl.categoryFilter.activeItem].Name}}</p>
+                        <img class="arrow" ng-src="{{rightCtrl.categoryFilter.arrowImg}}">
+                    </div>
+                    <div class="list-wrapper">
+                        <ul>
+                            <li ng-repeat="category in rightCtrl.categoryFilter.items" >
+                                <p ng-click="rightCtrl.categoryFilter.setActiveItem($index)" class="label">{{category.Name}}</p>
+                                <!--<span ng-click="rightCtrl.editProductType(type)" title="Редактировать категорию" style="float: right" class="icon"><img src="templates/admin/images/edit.png"></span>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: inline-block;position: relative">
+                    <input type="text" placeholder="Быстрый поиск" ng-model="rightCtrl.nameFilter" class="gray width-150 height-33 search" style="padding-right: 20px;width:200px;" autocomplete="off">
+                    <img src="templates/admin/images/search.png" style="position: absolute;right: 3px;top: 9px;">
+                </div>
+
+                <div class="select-box width-150 height-33" select-inline="types">
+                    <div class="header">
+                        <p class="label">{{rightCtrl.productTypeFilter.items[rightCtrl.productTypeFilter.activeItem].Name}}</p>
+                        <img class="arrow" ng-src="{{rightCtrl.productTypeFilter.arrowImg}}">
+                    </div>
+                    <div class="list-wrapper">
+                        <ul>
+                            <li ng-repeat="productType in rightCtrl.productTypeFilter.items" >
+                                <p ng-click="rightCtrl.productTypeFilter.setActiveItem($index)" class="label">{{productType.Name}}</p>
+                                <!--<span ng-click="rightCtrl.editProductType(type)" title="Редактировать категорию" style="float: right" class="icon"><img src="templates/admin/images/edit.png"></span>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <section style="height: 350px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table" ng-hide="rightCtrl.isLoading.Data">
+                        <thead>
+                        <tr>
+                            <th style="width:330px;" class="name">Название блюда</th>
+                            <th style="width:80px;" class="type">Категория</th>
+                            <th class="description">Описание</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="product in rightCtrl.productsList.items |  filter:rightCtrl.filter" ng-click="rightCtrl.addProduct(product)">
+                            <td class="name">{{product.Name}}</td>
+                            <td class="type">{{rightCtrl.getProductType(product.TypeId).Name}}</td>
+                            <td class="description"><p>{{product.Description}}</p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="loading-block ng-hide" ng-show="rightCtrl.isLoading.Data">
+                        <div class="cssload-jumping">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>

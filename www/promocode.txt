@@ -1,0 +1,15 @@
+Data = {
+    Type:<int>,
+    Options:<object>
+}
+
+Types:
+
+1 - Скидка на весь заказ
+Options = {Value:<float>, Units:'percents|value'}
+Value - размер скидки
+Units - единицы измерения (процент, значение)
+
+2 - Скидка на каждый день заказа
+Options = {Value:<float>, Units:'percents|value'}
+Units - единицы измерения (процент, значение)

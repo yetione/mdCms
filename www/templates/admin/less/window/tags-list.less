@@ -1,0 +1,33 @@
+@import '../variables';
+@import '../mixins';
+@import 'variables';
+
+.tags-list{
+  .flex();
+  .justify-content(flex-start);
+  .align-items(center);
+  .flex-wrap(wrap);
+  .tag{
+    .border-box();
+    .flex();
+    .justify-content(space-between);
+    .align-items(center);
+    //.flex-grow(1);
+    .flex-shrink(0);
+    margin: 3px 10px;
+    padding: 5px;
+    background-color: @darkGreen;
+    color:#ffffff;
+    .label{
+      width:auto;
+      margin:0 5px;
+      color:#ffffff;
+      .flex-grow(1);
+      .flex-shrink(0);
+    }
+    .icon{
+      i{cursor: pointer;}
+    }
+
+  }
+}

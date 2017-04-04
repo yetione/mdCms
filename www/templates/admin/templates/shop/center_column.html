@@ -1,0 +1,31 @@
+<div class="block-top" >
+    <nav>
+        <a class="active">Модуль</a>
+    </nav>
+</div>
+<div class="block-bottom">
+
+
+<div class="categories-list-block" ng-controller="shop.centerColumn as categoriesList">
+    <p>Элементы магазина</p>
+    <ul class="categories-list">
+        <li ng-repeat="category in categoriesList.categories" ng-class="{active:categoriesList.activeItem==$index}" ng-click="categoriesList.click($index)">
+            {{category.Name}}
+            <!--<div class="stg-icon">
+                <img src="/templates/admin/images/icons/settings_small.png" width="15" height="15">
+            </div>-->
+
+        </li>
+        <!--<li>
+            Управление списком городов
+            <!--<div class="stg-icon">
+                <img src="/templates/admin/images/icons/settings_small.png" width="15" height="15">
+            </div>
+        </li>-->
+    </ul>
+    <ul style="margin-top:20px;">
+        <li ng-click="categoriesList.showPromocode()">Промокоды</li>
+    </ul>
+
+</div>
+</div>

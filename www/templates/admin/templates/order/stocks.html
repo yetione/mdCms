@@ -1,0 +1,121 @@
+<div class="content" ng-controller="order.documents.stocks as stocks">
+    <div class="category-item-block orders-layout">
+        <div class="header">
+            <span class="cat-name">Точки самовывоза</span>
+        </div>
+
+        <div class="window order-window" style="margin-top:30px;" >
+                <div class="header">
+                    <span class="label">Точки самовывоза</span>
+                    <div class="select-box width-150 height-33" select-inline="city-filter">
+                        <div class="header">
+                            <p class="label">{{stocks.citiesList.items[stocks.citiesList.activeItem].Name}}</p>
+                            <img class="arrow" ng-src="{{stocks.citiesList.arrowImg}}">
+                        </div>
+                        <div class="list-wrapper">
+                            <ul>
+                                <li ng-repeat="city in stocks.citiesList.items" >
+                                    <p ng-click="stocks.citiesList.setActiveItem($index)" class="label">{{city.Name}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button ng-click="stocks.editItem()" class="height-33" style="margin-left:15px;">
+                        <span class="label">Добавить</span>
+                    </button>
+                </div>
+                <div class="content">
+                    <section>
+                        <table class="data-table" ng-hide="stocks.itemsInLoading.Stocks">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Станция метро</th>
+                                <th>Адрес</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="stock in stocks.list track by stock.Id" >
+                                <td class="Name" ng-click="stocks.editItem(stock)">{{stock.Name}}</td>
+                                <td class="MetroStation" ng-click="stocks.editItem(stock)">{{stock.MetroStation}}</td>
+                                <td class="Address" ng-click="stocks.editItem(stock)">{{stock.Street}}, {{stock.Building}}{{stock.Room ? ', '+stock.Room : ''}}</td>
+                                <td class="actions"><a ng-click="stocks.deleteItem(stock)">Удалить</a> </td>
+                            </tr>
+                            <tr ng-show="stocks.list.length == 0">
+                                <td colspan="3" style="text-align: center">Не найдено точек самовывоза</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </div>
+            </div>
+
+        <form name="StockEditForm" ng-submit="stocks.saveActiveItem()" novalidate ng-hide="stocks.activeItem === null">
+                <div class="window order-window" style="margin-top: 30px">
+                    <div class="header">
+                        <span class="label" ng-show="!stocks.activeItem.Id">Добавление точки самовывоза</span>
+                        <span class="label" ng-show="stocks.activeItem.Id">Редактирование точки самовывоза</span>
+                    </div>
+                    <div class="content" ng-hide="stocks.activeItem === null">
+                        <section>
+                            <div class="light-gray-block">
+                                <span class="label">Название</span>
+                                <input type="text" class="gray light-gray height-28 width-450" ng-model="stocks.activeItem.Name" name="Name" autocomplete="off">
+                            </div>
+                            <div class="light-gray-block">
+                                <span class="label">Город</span>
+                                <div class="select-box width-450 height-33 lg" select-inline="code-type">
+                                    <div class="header">
+                                        <p class="label">{{stocks.formCitiesList.getActiveItem().Name}}</p>
+                                        <img class="arrow" ng-src="{{stocks.formCitiesList.arrowImg}}">
+                                    </div>
+                                    <div class="list-wrapper">
+                                        <ul>
+                                            <li ng-repeat="item in stocks.formCitiesList.items" >
+                                                <p ng-click="stocks.formCitiesList.setActiveItem($index)" class="label">{{item.Name}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="light-gray-block">
+                                <span class="label">Станция метро</span>
+                                <div class="predictable" auto-complete="menuAutoComplete" ac-string="stocks.activeItem.MetroStation" ac-options="stocks.metroStationsAutocomplete">
+                                    <input type="text" class="gray light-gray height-28 width-450" ng-model="stocks.activeItem.MetroStation" name="MetroStation" autocomplete="off">
+                                    <div class="predicts" ng-show="stocks.metroStationsAutocomplete.Opening">
+                                        <ul>
+                                            <li ng-repeat="station in stocks.metroStationsAutocomplete.Items track by $index" ng-click="stocks.selectMetroStation(station)">{{station}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="light-gray-block">
+                                <span class="label">Улица</span>
+                                <div class="predictable" auto-complete="streetAutoComplete" ac-string="stocks.activeItem.Street" ac-options="stocks.streetAutocomplete">
+                                    <input type="text" class="gray light-gray height-28 width-450" ng-model="stocks.activeItem.Street" name="Street" autocomplete="off">
+                                    <div class="predicts streets" ng-show="stocks.streetAutocomplete.Opening">
+                                        <ul>
+                                            <li ng-repeat="street in stocks.streetAutocomplete.Items track by $index" ng-click="stocks.selectStreet(street)">{{street.Label}} <span class="city">{{street.City}}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="light-gray-block">
+                                <span class="label">Дом</span>
+                                <input type="text" class="gray light-gray height-28 width-450" ng-model="stocks.activeItem.Building" name="Building" autocomplete="off">
+                            </div>
+                            <div class="light-gray-block">
+                                <span class="label">Квартира/офис</span>
+                                <input type="text" class="gray light-gray height-28 width-450" ng-model="stocks.activeItem.Room" name="Room" autocomplete="off">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="footer">
+                        <input type="submit" class="button" value="Сохранить" ng-hide="!StockEditForm.$dirty">
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>

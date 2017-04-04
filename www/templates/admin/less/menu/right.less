@@ -1,0 +1,66 @@
+@import "../mixins";
+@import "../variables";
+.category-window{
+  width:950px;
+  margin-bottom: 2px;
+}
+.calendar-window{
+  width: 950px;
+  .arrow{
+    height:145px;
+    vertical-align: middle;
+    display: inline-block;
+    box-sizing: border-box;
+    padding-top: 20px;
+    cursor: pointer;
+  }
+  .days-list{display: inline-block;vertical-align: middle;height:145px;box-sizing: border-box;width:856px;overflow: hidden;}
+  .day-block{
+    text-align: center;
+    font-family: @fontOpenSans;
+    color:@grayTextColor;
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    height:145px;
+    margin-right:26px;
+    cursor: pointer;
+    p{margin:0;}
+    .rectangle{
+      height: 100px;
+      text-align: center;
+      overflow: hidden;
+      background-color: @grayBackgroundColor;
+      .number{font-size: 60px;line-height: 50px;margin-top:10px;}
+      .week-day{font-size:12px;line-height: 15px;margin-top:15px;}
+    }
+    .month{font-size: 12px;margin-top: 13px;}
+    &:last-child{margin-right: 0;}
+
+    &:hover{.rectangle{background-color: #2a333d;}}
+    &.disable{
+      cursor: auto;
+      p{color:#212830;}
+      .rectangle{background-color: #171d23;}
+    }
+
+    &.active{
+      background-color: #8dc63f;
+      p{color:#ffffff;}
+      .rectangle{background-color: #8dc63f}
+    }
+
+    /*-webkit-transition: .3s linear all;
+    transition: .3s linear all;*/
+    /*&.ng-enter{opacity:0;}
+    &.ng-enter.ng-enter-active{opacity:1;};
+
+    &.ng-leave{opacity:1;}
+    &.ng-leave.ng-leave-active{opacity: 0;}*/
+  }
+
+  .green-line{
+    background-color: #8dc63f;
+    height: 7px;
+  }
+}

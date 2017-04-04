@@ -1,0 +1,16 @@
+<div class="arrow" ng-click="calendar.prev()">
+    <img src="templates/admin/images/menu_left_arrow.png">
+</div>
+<div class="days-list">
+
+    <div class="day-block" ng-repeat="d in calendar.currentPage" ng-class="{active:calendar.activeDay.toString() == d.toString()}" ng-click="calendar.selectDay(d)">
+        <div class="rectangle">
+            <p class="number">{{calendar.day(d.getDate())}}</p>
+            <p class="week-day">{{calendar.weekDay(d.getDay())}}</p>
+        </div>
+        <p class="month">{{calendar.month(d.getMonth())}}, {{d.getFullYear()}}</p>
+    </div>
+</div>
+<div class="arrow" ng-click="calendar.next()">
+    <img src="templates/admin/images/menu_right_arrow.png">
+</div>

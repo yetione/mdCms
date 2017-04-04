@@ -1,0 +1,83 @@
+@import "variables";
+@import "mixins";
+
+@import "columns/first";
+@import "columns/second";
+@import "columns/third";
+
+@import "shop/second";
+@import "shop/third";
+@import "shop/dialogs/products_list";
+
+@import "menu/right";
+
+@import "order/right";
+
+@import "blog/dialog";
+
+@import "window/style";
+@import "is_loading";
+
+
+@bodyBackground: #202833;
+@blockTopHeight: 60px;
+html{
+  background-color: @bodyBackground;
+  .displayFlex;
+  flex-direction: column;
+  body{
+    margin: 0;
+    padding: 0;
+    .displayFlex;
+    flex-direction: column;
+    flex: auto;
+    .wrapper{
+      .displayFlex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content:flex-start;
+      box-sizing: border-box;
+      min-height: 100%;
+      flex:auto;
+      align-items: stretch;
+
+      .block-top{
+        width:100%;
+        height: @blockTopHeight;
+      }
+
+      .column{
+        flex:auto;
+      }
+    }
+    footer{
+      background-color: #161b22;
+      box-sizing: border-box;
+      padding: 15px;
+      font-family: @fontOpenSans;
+      font-size:14px;
+      font-weight: lighter;
+      span{color:#2e3640}
+    }
+  }
+}
+
+.date-picker{
+  background-color: #2a333d;
+  border-radius: 0;
+  font-family: @fontOpenSans;
+  color:#6e7780;
+}
+
+ul[dnd-list], ul[dnd-list] > li {
+  position: relative;
+}
+
+.ui-notification{
+  font-family: @fontOpenSans;
+}
+.window.new{
+  .md-table.orders-list{
+    span.cell.price{flex-basis: 20px;}
+  }
+}

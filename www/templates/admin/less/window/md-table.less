@@ -1,0 +1,99 @@
+@import '../variables';
+@import '../mixins';
+@import 'variables';
+
+@mdTableAnimTime:.15s;
+@mdTableAnimFunc: linear;
+div.md-table{
+  font-family: @fontOpenSans;
+  .flex();
+  .flex-direction(column);
+  div.cell{
+    padding:0 5px;
+    box-sizing: border-box;
+    .flex-grow(1);
+    .flex-shrink(1);
+    flex-basis: 0px;
+    &.actions{ a{cursor:pointer;text-decoration: dashed;} }
+  }
+  li.row, div.row{
+    .flex();
+    .align-items(center);
+    .justify-content(space-between);
+    .border-box();
+
+    padding:10px 10px;
+    font-size: 12px;
+    border-bottom: 1px dashed rgba(46,60,71, 0.5);
+  }
+  div.row.head{
+    background-color: @inputBackgroundColor;
+    font-size: 12px;
+    border-bottom: 2px solid #313c47;
+    padding: 5px 10px;
+    div.cell{
+      font-weight: bold;
+      color:#818a94;
+      height: 20px;
+      .flex();
+      .align-items(center);
+      .justify-content(space-between);
+      .sort-icon{
+        .flex();
+        .flex-direction(column);
+        .justify-content(space-between);
+        .align-items(center);
+        .user-select(none);
+        img{
+          opacity:0.5;
+          .transition(all, @mdTableAnimTime, @mdTableAnimFunc);
+          &:first-of-type{.transform(scaleY(-1));filter: FlipV;margin-bottom:3px;}
+        }
+      }
+      .sort-block{
+        .user-select(none);
+        img{.transition(all, @mdTableAnimTime, @mdTableAnimFunc);}
+        &.asc{ img{.transform(scaleY(-1));filter: FlipV;} }
+      }
+      &.sortable{cursor:pointer;}
+    }
+  }
+  >ul{
+    padding:0; margin: 0;
+    .flex();
+    .flex-direction(column);
+    li{
+      &.row{
+        background-color: #111519;
+        color: #4d5258;
+        .transition(all, @mdTableAnimTime, @mdTableAnimFunc);
+        >div.actions{
+          text-align: right;
+          >a{text-decoration: underline;color:#4d5258;}
+        }
+        &:hover, &.selected{
+          background-color: #14191e;
+          >div{
+            color:#a5aeb8;
+            >a{color:#a5aeb8}
+          }
+        }
+        &.marked{
+          background-color: @darkGreen;
+          >div{
+            color:#ffffff;
+            >a{color:#ffffff;}
+          }
+        }
+      }
+      &.dndDraggingSource{display: none;}
+      &.dndPlaceholder{
+        background-color: #262e37 !important;
+        min-height: 24px;
+      }
+    }
+  }
+  &.products-list{
+    width: 100%;
+  }
+}

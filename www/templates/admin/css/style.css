@@ -1,0 +1,50 @@
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=cyrillic,cyrillic-ext,latin);*/
+@import "first-column.css";
+@import "secon-column.css";
+@import "third-column.css";
+@import "custom-input.css";
+html{
+    background-color:#202833;
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-direction: column;
+
+}
+body{
+    margin: 0;
+    padding: 0;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+.wrapper{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:flex-start;
+    box-sizing: border-box;
+    min-height: 100%;
+    flex:auto;
+    align-items: stretch;
+}
+
+.block-top{
+    width:100%;
+    height: 60px;
+}
+
+.column{
+    flex:auto;
+}
+
+
+.column-content{
+
+}
+

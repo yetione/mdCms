@@ -1,0 +1,105 @@
+<div ng-controller="order.documents.Manager as rightCtrl" class="content">
+    <div class="category-item-block orders-layout">
+        <div class="header">
+            <span class="cat-name">Управление</span>
+        </div>
+
+        <div class="window orders-window" ng-controller="order.documents.CouriersList as couriersList">
+            <div class="header">
+                <span class="label">Дни с активными заказами</span>
+                <div class="select-box width-150 height-33" select-inline="city-filter">
+                    <div class="header">
+                        <p class="label">{{couriersList.filters.City.items[couriersList.filters.City.activeItem].Name}}</p>
+                        <img class="arrow" ng-src="{{couriersList.filters.City.arrowImg}}">
+                    </div>
+                    <div class="list-wrapper">
+                        <ul>
+                            <li ng-repeat="city in couriersList.filters.City.items" >
+                                <p ng-click="couriersList.filters.City.setActiveItem($index)" class="label">{{city.Name}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="display: inline-block;position: relative">
+                    <input type="text" date-time format="DD.MM.YYYY" id="CouriersList-MinDate"
+                           max-view="date" min-view="date" ng-model="couriersList.filters.Date.Start"
+                           class="date-picker gray width-150 height-33 search" style="padding-right: 20px;width:200px;">
+                </div>
+                <div style="display: inline-block;position: relative;">
+                    <input type="text" date-time format="DD.MM.YYYY" id="CouriersList-MaxDate"
+                           max-view="date" min-view="date" ng-model="couriersList.filters.Date.End"
+                           class="date-picker gray width-150 height-33 search" style="padding-right: 20px;width:200px;">
+                </div>
+                <button ng-click="couriersList.updateDatesList()" class="height-33" style="margin-left:15px;">
+                    <span class="label">Обновить</span>
+                </button>
+
+            </div>
+            <div class="content">
+                <section style="height: 250px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table" ng-show="!daysList.listInUpdate">
+                        <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Кол-во заказов</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="day in couriersList.list" ng-click="couriersList.selectDay(day)">
+                            <td class="date">{{day.Moment.format('dddd, D MMMM')}}</td>
+                            <td class="orders">{{day.OrdersCount}}</td>
+                        </tr>
+                        <tr ng-show="couriersList.list.length == 0">
+                            <td colspan="2" style="text-align: center">Не найдено заков</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="loading-block" ng-show="couriersList.listInUpdate">
+                        <div class="cssload-jumping">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="content">
+                <section style="min-height:150px;max-height: 400px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table" ng-show="!couriersList.listInUpdate">
+                        <thead>
+                        <tr>
+                            <th>Способ получения</th>
+                            <th>Клиент</th>
+                            <th>Сумма</th>
+                            <th style="width:350px;">Курьер</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="od in couriersList.odList" ng-click="couriersList.selectOd(od)">
+                            <td class="DeliveryType">{{od.DeliveryType}}</td>
+                            <td class="ClientName">{{od.ClientName}}</td>
+                            <td class="Price">{{od.Price}}</td>
+                            <td class="Courier actions" style="text-align: left">
+                                <span ng-show="od.CourierId == 0" ><a ng-click="couriersList.setCourier(od);">Назначить</a></span>
+                                <span ng-show="od.CourierId > 0">{{od.Courier.Name}} (<a ng-click="couriersList.setCourier(od);">заменить</a>)</span>
+                            </td>
+                            <td class="actions"><a ng-click="couriersList.printDoc(od);" target="_blank" ng-href="json.php?Order={{od.Id}}&action=generateOrderDayCheck&controller=Admin\Documents&module=Food">Скачать чек</a></td>
+                        </tr>
+                        <tr ng-show="daysList.list.length == 0">
+                            <td colspan="2" style="text-align: center">Не найдено заков</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="loading-block" ng-show="daysList.listInUpdate">
+                        <div class="cssload-jumping">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

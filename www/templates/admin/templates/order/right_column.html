@@ -1,0 +1,236 @@
+<div ng-controller="order.rightColumn as rightCtrl" class="content">
+    <div class="category-item-block orders-layout">
+        <div class="header">
+            <span class="cat-name">Заказы</span>
+            <!--<select ng-model="rightCtrl.activeCity" ng-change="rightCtrl.cityChange()"
+                    ng-options="city.Name for city in rightCtrl.citiesList track by city.Id"></select>-->
+            <div class="select-box width-150 height-33" select-inline="city">
+                <div class="header">
+                    <p class="label">{{rightCtrl.citiesFilter.items[rightCtrl.citiesFilter.activeItem].Name}}</p>
+                    <img class="arrow" ng-src="{{rightCtrl.citiesFilter.arrowImg}}">
+                </div>
+                <div class="list-wrapper">
+                    <ul>
+                        <li ng-repeat="city in rightCtrl.citiesFilter.items" >
+                            <p ng-click="rightCtrl.citiesFilter.setActiveItem($index)" class="label">{{city.Name}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="window orders-window ">
+            <div class="header">
+                <div style="display: inline-block;position: relative">
+                    <input type="text" placeholder="Быстрый поиск" ng-model="rightCtrl.filters.text" class="gray width-150 height-33 search" style="padding-right: 20px;width:200px;" autocomplete="off">
+                    <img src="templates/admin/images/search.png" style="position: absolute;right: 3px;top: 9px;">
+                </div>
+                <button ng-click="rightCtrl.addOrder()" style="margin-left:15px;font-weight: normal;">Добавить заказ</button>
+
+            </div>
+            <div class="content" is-loading="rightCtrl.ordersloading">
+                <section style="height: 350px;overflow-y: auto;background-color: #070c12;">
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Клиент</th>
+                            <th>Дата создания</th>
+                            <th>Стоимость</th>
+                            <th>Статус</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="order in rightCtrl.ordersList track by order.Id" ng-click="rightCtrl.selectOrder(order)">
+                            <td class="number">Заказ № {{order.Id}} <span ng-if="order.PromoCodeName">(Промокод)</span></td>
+                            <td class="name">{{order.ClientName}}</td>
+                            <td class="type">{{order.DateCreated.format('DD.MM.YYYY HH:mm')}}</td>
+                            <td class="price">{{order.Price}}</td>
+                            <td class="status">{{order.Status}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+        <form name="OrderEditForm" ng-controller="order.item as itemCtrl" ng-submit="itemCtrl.saveOrder()" ng-disabled="!itemCtrl.order.Id">
+        <div class="window order-window"  style="margin-top: 25px;" ng-class="{trans:!itemCtrl.order.Id}">
+            <div class="header">
+                <span class="label">Детальная информация о заказе №{{itemCtrl.order.Id}}({{itemCtrl.orderDays.length}} дня)</span>
+            </div>
+            <div class="content">
+                <section>
+                    <div class="light-gray-block">
+                        <span class="label">Ф.И.О. клиента</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.order.ClientName" name="ClientName" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Телефон</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.order.Phone" name="Phone" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">E-mail</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.order.Email" name="Email" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Дата создания</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.order.DateCreated" name="DateCreated" autocomplete="off" ng-disabled="1">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Статус</span>
+                        <div class="select-box width-150 height-33 lg" select-inline="order-status">
+                            <div class="header">
+                                <p class="label">{{itemCtrl.orderStatusesList.activeItem}}</p>
+                                <img class="arrow" ng-src="{{itemCtrl.orderStatusesList.arrowImg}}">
+                            </div>
+                            <div class="list-wrapper">
+                                <ul>
+                                    <li ng-repeat="status in itemCtrl.orderStatuses" >
+                                        <p ng-click="itemCtrl.orderStatusesList.setActiveItem(status)" class="label">{{status}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="light-gray-block" ng-if="itemCtrl.order.PromoCodeName">
+                        <span class="label">Промокод</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.order.PromoCodeName" name="PromoCodeName" autocomplete="off" ng-disabled="1">
+                    </div>
+                </section>
+                <section>
+                    <div class="light-gray-block">
+                        <span class="label">День</span>
+                        <div class="select-box width-150 height-33 lg" select-inline="order-day">
+                            <div class="header">
+                                <p class="label">{{itemCtrl.orderDaysList.activeItem.label}}</p>
+                                <img class="arrow" ng-src="{{itemCtrl.orderDaysList.arrowImg}}">
+                            </div>
+                            <div class="list-wrapper">
+                                <ul>
+                                    <li ng-repeat="day in itemCtrl.orderDaysSelect" >
+                                        <p ng-click="itemCtrl.orderDaysList.setActiveItem(day)" class="label">{{day.label}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a ng-click="itemCtrl.addDay()" class="button" style="margin-left:15px;font-weight: normal;">Добавить день</a>
+                        <!--<a ng-click="itemCtrl.deleteDay()" class="button" style="margin-left:15px;font-weight: normal;">Удалить день</a>-->
+                    </div>
+                </section>
+                <section>
+                    <h3>Доставка</h3>
+
+                    <div class="light-gray-block">
+                        <span class="label">Улица</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.activeOrderDay.Street" name="Street" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Дом</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.Building" name="Building" autocomplete="off">
+                        <span class="label">Квартира/офис</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.Room" name="Room" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Время доставки</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.DeliveryTime" name="DeliveryTime" autocomplete="off">
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Кол-во приборов </span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.PersonsCount" name="PersonsCount" autocomplete="off">
+                    </div>
+                </section>
+                <section>
+                    <h3>Оплата</h3>
+                    <div class="light-gray-block" ng-if="itemCtrl.activeOrderDay.Discount">
+                        <span class="label">Цена без скидки</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.Price" name="ClearPrice" autocomplete="off" ng-disabled="1"><span class="label"> руб.</span>
+                        <span class="label">Скидка {{itemCtrl.activeOrderDay.Discount}}</span>
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Стоимость</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.activeOrderDay.DiscountPrice" name="DiscountPrice" autocomplete="off" ng-disabled="1"><span class="label"> руб.</span>
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Способ оплаты</span>
+                        <input type="text" class="gray light-gray height-28 width-450 " ng-model="itemCtrl.activeOrderDay.PaymentType" name="PaymentType" autocomplete="off">
+                    </div>
+                </section>
+                <section>
+                    <div class="light-gray-block">
+                        <span class="label">Статус</span>
+                        <div class="select-box width-250 height-33 lg" select-inline="order-day">
+                            <div class="header">
+                                <p class="label">{{itemCtrl.orderDayStatusesList.activeItem}}</p>
+                                <img class="arrow" ng-src="{{itemCtrl.orderDayStatusesList.arrowImg}}">
+                            </div>
+                            <div class="list-wrapper">
+                                <ul>
+                                    <li ng-repeat="status in itemCtrl.orderDayStatuses" >
+                                        <p ng-click="itemCtrl.orderDayStatusesList.setActiveItem(status)" class="label">{{status}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Комментарий клиента</span>
+                        <textarea ng-model="itemCtrl.activeOrderDay.ClientComment" name="ClientComment" class="light-gray gray width-450"></textarea>
+                    </div>
+                    <div class="light-gray-block">
+                        <span class="label">Комментарий менеджера</span>
+                        <textarea ng-model="itemCtrl.activeOrderDay.ManagerComment" name="ManagerComment" class="light-gray gray width-450"></textarea>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Список продуктов <a ng-click="itemCtrl.addProduct()" class="button" style="margin-left:15px;font-weight: normal;">Добавить продукт</a></h3>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Количество</th>
+                            <th>Цена</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="product in itemCtrl.activeOrderDay.Products">
+                            <td class="name" ng-click="itemCtrl.editProduct(product)">{{product.Product.Name}}</td>
+                            <td class="amount" ng-click="itemCtrl.editProduct(product)">{{product.Amount}}</td>
+                            <td class="price" ng-click="itemCtrl.editProduct(product)">{{product.Price}}</td>
+                            <td class="actions"><a ng-click="itemCtrl.deleteProduct(product)">Удалить</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section ng-show="itemCtrl.editingProduct.Product.Product.Id > 0">
+                    <h3>Выбранный продукт</h3>
+                    <div class="light-gray-block">
+                        <span class="label" style="width: 250px;">{{itemCtrl.editingProduct.Product.Product.Name}}</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.editingProduct.Product.Amount" name="ProductAmount" autocomplete="off">
+                        <span class="label">Цена за единицу товара:</span>
+                        <input type="text" class="gray light-gray height-28 width-150 " ng-model="itemCtrl.editingProduct.Product.Price" name="ProductPrice" autocomplete="off">
+                        <span class="label">руб.</span>
+                        <a ng-click="itemCtrl.saveProduct()" class="button" style="margin-left:85px;">Сохранить</a>
+                        <a ng-click="itemCtrl.cancelProduct()" class="button" style="margin-left:5px;">Отмена</a>
+                    </div>
+                </section>
+            </div>
+            <div class="footer">
+                <input type="submit" value="Сохранить" class="button" ng-show="OrderEditForm.$dirty">
+                <!--<button type="button" ng-click="itemCtrl.saveOrder()"  role="">Сохранить</button>-->
+                <a class="button" ng-click="itemCtrl.deleteOrder()">Удалить</a>
+
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+

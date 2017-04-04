@@ -1,0 +1,50 @@
+.categories-list-block p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #818a94;
+  padding-left: 20px;
+}
+.categories-list-block ul {
+  margin: 0;
+  padding: 0;
+}
+.categories-list-block ul li {
+  list-style-type: none;
+  background-color: #212830;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #818a94;
+  padding: 10px 0 10px 40px;
+  position: relative;
+  margin: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.categories-list-block ul li:hover {
+  background-color: #252c35;
+}
+.categories-list-block ul li.active {
+  background-color: #323c48;
+}
+.categories-list-block ul li:before {
+  content: '■';
+  position: absolute;
+  left: 20px;
+  font-size: 11px;
+}
+.categories-list-block ul li.empty-element:before {
+  content: '';
+  display: none;
+}
+.categories-list-block ul li .stg-icon {
+  background-color: #191f26;
+  padding: 8px;
+  position: absolute;
+  right: 5px;
+  box-sizing: border-box;
+  top: 5px;
+}
+.categories-list-block ul li .stg-icon img {
+  float: left;
+}

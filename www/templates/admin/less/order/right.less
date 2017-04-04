@@ -1,0 +1,133 @@
+@import "../mixins";
+@import "../variables";
+
+
+@inputTextColor:@grayTextColor;
+@selectColor:#1a2027;
+@inputBackgroundLightColor:#2a333d;
+@inputHeight:27px;
+
+.orders-layout{
+
+  .md-table.products-list{
+    ul.data{
+      li.row{
+        cursor:pointer;
+      }
+    }
+  }
+  >.header{
+    select{
+      background-color: #1a2027;
+      border: none;
+      color:#6e7780;
+      padding: 5px 10px;
+      margin-left: 10px;
+      vertical-align: super;
+    }
+    .width-150{width:150px;.same(".same-width", width, 150px)}
+
+    .select-box{
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: sub;
+      background-color: @selectColor;
+      box-sizing: border-box;
+      position: relative;
+      &.lg{
+        background-color: @inputBackgroundLightColor;
+      }
+      .header{
+        p.label{
+          margin:0;
+          color:@inputTextColor;
+          word-break: keep-all;
+          font-size: 14px;
+        }
+        img.arrow{
+          position:absolute;
+          right:5px;
+          top:14px;
+        }
+        position: relative;
+        //height: 100%;
+        display: block;
+        padding:7px;
+        box-sizing: border-box;
+        overflow: hidden;
+        font-size:16px;
+        font-family: @fontOpenSans;
+        cursor: pointer;
+        max-height: 100%;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .list-wrapper{
+        max-height:400px;
+        overflow-y: auto;
+        position:absolute;
+        z-index: 10;
+        width: 100%;
+        ul{
+          background-color: @inputBackgroundLightColor;
+          margin:0;
+          padding:0;
+          list-style-type: none;
+          width: 100%;
+          font-size:12px;
+          li{
+            color:@grayTextColor;
+            margin:0;
+            padding:5px;
+            cursor: pointer;
+            position: relative;
+            > p.label{
+              color:@grayTextColor;
+              margin:0;
+              padding:0;
+            }
+            > span.icon{
+              position: absolute;
+              right:6px;
+              top:6px;
+              z-index: 11;
+            }
+            &:hover{
+              color:#a5aeb8;
+              background-color: #212830;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+
+}
+.orders-window{
+  width:950px;
+  &.trans{
+
+    opacity: 0.5;
+  }
+}
+
+.order-window{
+  width:950px;
+  &.trans{
+    opacity: 0.5;
+  }
+  a.button{
+    .button();
+  }
+  .light-gray-block span.label{
+    width:120px;
+  }
+}
+
+.products-list{
+  width:1040px;
+}

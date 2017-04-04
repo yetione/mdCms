@@ -1,0 +1,24 @@
+<div class="block-top">
+    <nav>
+        <a ng-click="setActiveItem($index)" class="active">Модуль</a>
+    </nav>
+</div>
+
+<div class="block-bottom">
+
+
+    <div class="categories-list-block" ng-controller="blog.centerColumn as catsCtrl">
+        <p>Блог</p>
+        <ul class="categories-list">
+            <li ng-click="catsCtrl.addCategory()">
+                Добавить категорию
+            </li>
+        </ul>
+        <ul class="categories-list" style="margin-top:30px">
+            <li ng-repeat="category in catsCtrl.categories" ng-class="{active:catsCtrl.categoriesList.activeItem==$index}" ng-click="catsCtrl.click($index)">
+                {{category.Name}}
+            </li>
+            <li class="active empty-element" ng-if="catsCtrl.categories.length == 0">Категории пока не созданы</li>
+        </ul>
+    </div>
+</div>

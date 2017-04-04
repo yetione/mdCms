@@ -1,0 +1,9 @@
+<?php
+namespace %NAMESPACE%;
+
+%USE_SECTION%
+
+class %CLASS_NAME% extends %EXTEND_CLASS%{
+
+    protected $entityName = '%ENTITY_NAME%';
+}

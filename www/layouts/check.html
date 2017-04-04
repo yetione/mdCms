@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <base href="/beta/">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=cyrillic,cyrillic-ext,latin);
+        body{
+            box-sizing: border-box;
+            width:210mm;
+            font-family: 'Open Sans', sans-serif;
+            font-size:16px;
+        }
+        p{margin:0;padding: 0;}
+        #top{
+            margin-bottom: 40px;
+        }
+        hr{
+            border: none;
+            background: #c0c0c0;
+            height: 1px;
+        }
+        #top > div{
+            display: inline-block;
+        }
+        #logo{width: 30mm;vertical-align: middle;}
+        #contacts{width:100mm; vertical-align: top}
+        #delivery_data{width:70mm; vertical-align: top;}
+
+        #contacts h2{
+            margin:5px 0;
+            font-size:1.3em;
+        }
+        #contacts p{
+            margin: 5px 0;
+            font-size:0.8em;
+        }
+        #delivery_data p{
+            margin:5px 0;
+            font-size: 0.8em;
+        }
+
+        #delivery_address{
+            width:100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        #delivery_address td,#delivery_address th{border:1px solid #c0c0c0;font-weight: bold;padding: 10px;}
+        #delivery_address th{font-size: 0.8em;text-align: left;padding: 5px;}
+
+        #data_tale{
+            margin-top:20px;
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+        }
+        #data_tale td, #data_tale th{padding: 10px;border:1px solid #c0c0c0}
+        #data_tale .itog{text-align: right; font-weight: bold;}
+        #data_tale .tovar{width:40%;}
+    </style>
+</head>
+<body>
+<div id="top">
+    <hr>
+    <div id="logo">
+        <img src="/beta/templates/site/images/logo.png">
+    </div>
+    <div id="contacts">
+        <h2>Sektafood</h2>
+        <p>Главный офис Школы идеального Тела #sekta по адресу Невский 32-34, 6 этаж</p>
+        <p>Телефон: 8 (926) 121 62 81 (Мск)</p>
+        <p>Телефон: 8 (911) 103 59 44 (СПб)</p>
+    </div>
+    <div id="delivery_data">
+        <p><b>Дата добавления: </b>14.08.2015</p>
+        <p><b>Способ доставки: </b>Самовывоз</p>
+        <p><b>День доставки: </b>Среда, 20 августа 2016</p>
+    </div>
+</div>
+<table id="delivery_address">
+    <tr><th>Адрес доставки</th></tr>
+    <tr><td>
+        <p>Ольга Лукьянова</p>
+        <p>8 (921) 333 66 43</p>
+        <p>olga@nmae.rrr</p>
+    </td></tr>
+</table>
+<p>Срок годности при условии хранения в температурном режиме +2 - +6 составляет 12 часов</p>
+<table id="data_tale">
+    <thead>
+    <tr>
+        <th class="tovar">Товар</th>
+        <th>Модель</th>
+        <th>Количество</th>
+        <th>Цена за единицу</th>
+        <th>Итого</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Салат ахуенного невъебенного качества Салат ахуенного невъебенного качества Салат ахуенного невъебенного качества</td>
+        <td>1</td>
+        <td>2</td>
+        <td>200р</td>
+        <td>400р</td>
+    </tr>
+    <tr>
+        <td colspan="4" class="itog">Общая сумма</td>
+        <td>400р</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

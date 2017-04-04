@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QSSchema>
+    <table name="users" alias="User" description="" charset="utf-8">
+        <column name="id" alias="Id" primaryKey="true|false" required="true|false"
+                type="BOOLEAN|TINYINT|SMALLINT|INTEGER|BIGINT|DOUBLE|FLOAT|REAL|DECIMAL|CHAR|{VARCHAR}|LONGVARCHAR|DATE|TIME|TIMESTAMP|BLOB|CLOB|OBJECT|ARRAY"
+                sqlType="/NativeSQLType/" size="/NumericLengthOfColumn/" scale="/DigitsAfterDecimalPlace/"
+                defaultValue="/AnyDefaultValueMatchingType/"
+                defaultSQL="/SQLExpr/" valueSet="/CommaSeparatedValues/"
+                autoIncrement="true|false"
+                lazyLoad = "true|{false}"
+                description = "/Column Description/"
+                charset="utf-8"
+                />
+        <foreign-key
+                foreignTable = "/TheOtherTableName/"
+                name = "/Name for this foreign key/"
+                phpName = "/Name for the foreign object in methods generated in this class/"
+                refPhpName = "/Name for this object in methods generated in the foreign class/"
+                onDelete = "cascade|setnull|restrict|none"
+                onUpdate = "cascade|setnull|restrict|none"
+                skipSql = "true|false"
+                defaultJoin= "Criteria::INNER_JOIN|Criteria::LEFT_JOIN"
+                >
+            <reference local="/LocalColumnName/" foreign="/ForeignColumnName/" />
+        </foreign-key>
+        <index name="/IndexName/">
+            <column name="/ColumnName/" size="/LengthOfIndexColumn/" />
+        </index>
+        <unique name="/IndexName/">
+            <column name="/ColumnName/" size="/LengthOfIndexColumn/" />
+        </unique>
+    </table>
+</QSSchema>

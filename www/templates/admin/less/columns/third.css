@@ -1,0 +1,151 @@
+html body .wrapper .column.third {
+  background-color: #202833;
+}
+html body .wrapper .column.third .block-top {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: center;
+  padding: 9px 0;
+  box-sizing: border-box;
+  background-color: #1c232c;
+  font-family: 'Open Sans', sans-serif;
+}
+html body .wrapper .column.third .block-top .block-left,
+html body .wrapper .column.third .block-top .block-right {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: center;
+  box-sizing: border-box;
+}
+html body .wrapper .column.third .block-top .border-block-r {
+  border-right: 1px solid #262e37;
+}
+html body .wrapper .column.third .block-top .border-block-l {
+  border-left: 1px solid #262e37;
+}
+html body .wrapper .column.third .block-top .ws-block {
+  padding: 0 25px;
+}
+html body .wrapper .column.third .block-top p.full-lh {
+  line-height: 42px;
+  margin: 0;
+}
+html body .wrapper .column.third .block-top span.cms-label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #818a94;
+  text-transform: uppercase;
+}
+html body .wrapper .column.third .block-top span.version-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 10px;
+  color: #3e4a58;
+}
+html body .wrapper .column.third .block-top .date_time-block p {
+  margin: 0;
+  color: #384351;
+  font-weight: lighter;
+  line-height: 22px;
+}
+html body .wrapper .column.third .block-top .date_time-block p.time {
+  font-size: 24px;
+}
+html body .wrapper .column.third .block-top .date_time-block p.date {
+  font-size: 14px;
+}
+html body .wrapper .column.third .block-top .top-icons {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+html body .wrapper .column.third .block-top .top-icons div {
+  text-align: center;
+  margin: 0 10px;
+  min-width: 30px;
+  flex-grow: 0;
+}
+html body .wrapper .column.third .block-top .user-data {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+html body .wrapper .column.third .block-top .user-data * {
+  min-width: 100px;
+}
+html body .wrapper .column.third .block-top .user-data .login,
+html body .wrapper .column.third .block-top .user-data .logout {
+  font-size: 14px;
+}
+html body .wrapper .column.third .block-top .user-data .login {
+  font-weight: bold;
+  color: #818a94;
+}
+html body .wrapper .column.third .block-top .user-data .logout {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #58636f;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 6px;
+  background-color: #262e37;
+  box-sizing: border-box;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background-color 0.8s ease;
+  -moz-transition: background-color 0.8s ease;
+  -ms-transition: background-color 0.8s ease;
+  -o-transition: background-color 0.8s ease;
+  transition: background-color 0.8s ease;
+  text-align: center;
+}
+html body .wrapper .column.third .block-top .user-data .logout:hover {
+  background-color: #2b343e;
+}
+#column-right > .content > section {
+  box-sizing: border-box;
+  padding: 15px;
+}
+#column-right > .content > section:first-child {
+  padding-top: 30px;
+}
+#column-right > .content > section > .header {
+  font-size: 36px;
+  font-family: 'Open Sans Light', sans-serif;
+  color: #818a94;
+}
+#column-right > .content > section > .header .action {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0 5px;
+}

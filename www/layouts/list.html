@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=cyrillic,cyrillic-ext,latin);
+        body{
+            box-sizing: border-box;
+            width:210mm;
+            font-family: 'Open Sans', sans-serif;
+            font-size:16px;
+        }
+        p{margin:0;padding: 0;}
+        #top{
+            margin-bottom: 40px;
+        }
+        hr{
+            border: none;
+            background: #c0c0c0;
+            height: 1px;
+        }
+        #top > div{
+            display: inline-block;
+        }
+        #logo{width: 30mm;vertical-align: middle;}
+        #contacts{width:100mm; vertical-align: top}
+        #delivery_data{width:70mm; vertical-align: top;}
+
+        #contacts h2{
+            margin:5px 0;
+            font-size:1.3em;
+        }
+        #contacts p{
+            margin: 5px 0;
+            font-size:0.8em;
+        }
+        #delivery_data p{
+            margin:5px 0;
+            font-size: 0.8em;
+        }
+
+        #delivery_address{
+            width:100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        #delivery_address td,#delivery_address th{border:1px solid #c0c0c0;font-weight: bold;padding: 10px;}
+        #delivery_address th{font-size: 0.8em;text-align: left;padding: 5px;}
+
+        #data_tale{
+            margin-top:20px;
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+        }
+        #data_tale td, #data_tale th{padding: 10px;border:1px solid #c0c0c0}
+        #data_tale .itog{text-align: right; font-weight: bold;}
+        #data_tale .tovar{width:40%;}
+    </style>
+</head>
+<body>
+<div id="top">
+    <hr>
+    <div id="logo">
+        <img src="/beta/templates/site/images/logo.png">
+    </div>
+    <div id="contacts">
+        <h2>Sektafood</h2>
+        <p>Главный офис Школы идеального Тела #sekta по адресу Невский 32-34, 6 этаж</p>
+        <p>Телефон: 8 (926) 121 62 81 (Мск)</p>
+        <p>Телефон: 8 (911) 103 59 44 (СПб)</p>
+    </div>
+    <div id="delivery_data">
+        <p><b>Дата: </b>14.08.2015</p>
+        <p><b>Курьер: </b>Самовывоз</p>
+        <p><b>Город: </b>Самовывоз</p>
+    </div>
+    <table id="data_tale">
+        <thead>
+        <tr>
+            <th>Адрес</th>
+            <th>Время</th>
+            <th>Комментарий клиента</th>
+            <th>Комментарий менеджера</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

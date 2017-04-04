@@ -1,0 +1,115 @@
+@import "../mixins";
+@import "../variables";
+
+@thirdColumnBackground: #202833;
+@{columnPathSelector}.third{
+  background-color: @thirdColumnBackground;
+  .block-top{
+    .displayFlex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:space-between;
+    align-items: stretch;
+    align-content: center;
+    padding: 9px 0;
+    box-sizing: border-box;
+    background-color: #1c232c;
+    font-family: @fontOpenSans;
+    .block-left, .block-right{
+      .displayFlex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content:flex-start;
+      align-items: stretch;
+      align-content: center;
+      box-sizing: border-box;
+    }
+    @borderColor:#262e37;
+    .border-block-r{border-right: 1px solid @borderColor;}
+    .border-block-l{border-left: 1px solid @borderColor;}
+    .ws-block{padding:0 25px;}
+    p.full-lh{line-height: 42px;margin:0;}
+
+    span.cms-label{
+      font-weight: bold;
+      font-size: 14px;
+      color: #818a94;
+      text-transform: uppercase;
+    }
+    span.version-label{
+      font-family: 'Open Sans', sans-serif;
+      font-weight: lighter;
+      font-size: 10px;
+      color:#3e4a58;
+    }
+    .date_time-block p{
+      margin:0;
+      color: #384351;
+      font-weight: lighter;
+      line-height: 22px;
+      &.time{font-size: 24px;}
+      &.date{font-size: 14px;}
+    }
+    .top-icons{
+      .displayFlex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content:space-between;;
+      align-items: center;
+      align-content: stretch;
+      box-sizing: border-box;
+
+      div{
+        text-align: center;
+        margin: 0 10px;
+        min-width:30px;
+        flex-grow: 0;
+      }
+    }
+    .user-data{
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content:space-between;;
+      align-items: center;
+      align-content: stretch;
+      box-sizing: border-box;
+
+      *{min-width: 100px;}
+      .login,.logout{font-size: 14px;}
+      .login{
+        font-weight: bold;
+        color: #818a94;
+      }
+      .logout{
+        .button();
+        text-align: center;
+      }
+    }
+  }
+}
+
+#column-right{
+  > .content{
+    > section{
+      box-sizing: border-box;
+      padding: 15px;
+      &:first-child{padding-top: 30px;}
+      > .header{
+        font-size: 36px;
+        font-family: 'Open Sans Light', sans-serif;
+        color: #818a94;
+        .action{
+          font-size: 14px;
+          text-decoration: underline;
+          cursor: pointer;
+          padding: 0 5px;
+        }
+      }
+    }
+
+  }
+}
+
+

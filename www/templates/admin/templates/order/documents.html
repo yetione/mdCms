@@ -1,0 +1,187 @@
+<div ng-controller="order.documents.rightColumn as rightCtrl" class="content">
+<div class="category-item-block orders-layout">
+<div class="header">
+    <span class="cat-name">Документы</span>
+    <!--<select ng-model="rightCtrl.activeCity" ng-change="rightCtrl.cityChange()"
+            ng-options="city.Name for city in rightCtrl.citiesList track by city.Id"></select>-->
+    <div class="select-box width-150 height-33" select-inline="city">
+        <div class="header">
+            <p class="label">{{rightCtrl.citiesFilter.items[rightCtrl.citiesFilter.activeItem].Name}}</p>
+            <img class="arrow" ng-src="{{rightCtrl.citiesFilter.arrowImg}}">
+        </div>
+        <div class="list-wrapper">
+            <ul>
+                <li ng-repeat="city in rightCtrl.citiesFilter.items" >
+                    <p ng-click="rightCtrl.citiesFilter.setActiveItem($index)" class="label">{{city.Name}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="window orders-window" ng-controller="order.documents.DaysList as daysList">
+    <div class="header">
+        <div style="display: inline-block;position: relative">
+            <input type="text" date-time format="DD.MM.YYYY" id="DaysList-MinDate"
+                 max-view="date" min-view="date" ng-model="daysList.filters.MinDate"
+                 date-change="daysList.onDateChange"
+                 class="date-picker gray width-150 height-33 search" style="padding-right: 20px;width:200px;">
+            <!--<img src="templates/admin/images/search.png" style="position: absolute;right: 3px;top: 9px;">-->
+        </div>
+        <div style="display: inline-block;position: relative;">
+            <input type="text" date-time format="DD.MM.YYYY" id="DaysList-MaxDate"
+                   max-view="date" min-view="date" ng-model="daysList.filters.MaxDate"
+                   class="date-picker gray width-150 height-33 search" style="padding-right: 20px;width:200px;">
+        </div>
+        <div class="select-box width-250 height-33" multi-select-inline="order-statuses">
+            <div class="header">
+                <p class="label">{{daysList.filters.Status.header}}</p>
+                <img class="arrow" ng-src="{{daysList.filters.Status.arrowImg}}">
+            </div>
+            <div class="multi-list">
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox" ng-model="daysList.filters.Status.allSelected" ng-change="daysList.filters.Status.selectAll()">
+                            Все категории
+                        </label>
+                    </li>
+                    <li class="delimetr"></li>
+                    <li ng-repeat="status in daysList.orderStatuses">
+                        <label>
+                            <input type="checkbox" ng-model="daysList.filters.Status.model[$index]" name="OrderStatus" ng-change="daysList.filters.Status.selectItem($index)">
+                            {{status}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button ng-click="daysList.updateList()" class="height-33" style="margin-left:15px;">
+            <span class="label">Обновить</span>
+        </button>
+
+    </div>
+    <div class="content">
+        <section style="height: 150px;overflow-y: auto;background-color: #070c12;">
+            <table class="data-table" ng-show="!daysList.listInUpdate">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Кол-во заказов</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="day in daysList.list" ng-click="daysList.selectDay(day)">
+                    <td class="date">{{day.Moment.format('dddd, D MMMM')}}</td>
+                    <td class="orders">{{day.OrdersCount}}</td>
+                </tr>
+                <tr ng-show="daysList.list.length == 0">
+                    <td colspan="2" style="text-align: center">Не найдено заков</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="loading-block" ng-show="daysList.listInUpdate">
+                <div class="cssload-jumping">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+    <div class="window order-window" style="margin-top:30px;" ng-class="{trans:kitchen.activeDay.Date == ''}" ng-controller="order.documents.Kitchen as kitchen">
+        <div class="header">
+            <span class="label">Отчеты для кухни {{kitchen.activeCity.Name}} {{kitchen.activeDay.Moment.format('dddd, D MMMM')}}</span>
+        </div>
+        <div class="content">
+            <section>
+                <!--<button type="button" class="button" ng-click="kitchen.generate()">Сгенерировать</button>
+                <a class="button" ng-href="{{kitchen.productsLink}}" ng-show="kitchen.productsLink != ''" target="_blank">Отчет по блюдам</a>
+                <a class="button" ng-href="{{kitchen.ordersLink}}" ng-show="kitchen.ordersLink != ''" target="_blank">Отчет по заказам</a>-->
+                <button type="button" class="button" ng-click="kitchen.generatePDFLinks()">Сгенерировать PDF</button>
+                <a class="button" ng-href="{{kitchen.ordersPDFLink}}" ng-show="kitchen.ordersPDFLink != ''" target="_blank">Отчет по заказам</a>
+                <a class="button" ng-href="{{kitchen.productsPDFLink}}" ng-show="kitchen.productsPDFLink != ''" target="_blank">Отчет по блюдам</a>
+
+
+            </section>
+
+        </div>
+
+    </div>
+
+<div class="window order-window tour-list" ng-controller="order.documents.ItineraryItem as itemCtrl" style="margin-top: 30px;" ng-class="{trans:itemCtrl.activeDay.Date == ''}">
+    <div class="header">
+        <span class="label">Составление маршрутного листа ({{itemCtrl.activeCity.Name}}, {{itemCtrl.activeDay.Moment.format('dddd, D MMMM')}}).</span>
+        <button type="button" class="button" ng-click="itemCtrl.newList()">Новый лист</button>
+    </div>
+    <div class="content">
+        <section>
+            <div class="light-gray-block">
+                <div ng-hide="itemCtrl.couriersInUpdate">
+                <span class="label">Курьер</span>
+                <div class="select-box width-250 height-33 lg" select-inline="couriers-list">
+                    <div class="header">
+                        <p class="label">{{itemCtrl.couriersList.header}}</p>
+                        <img class="arrow" ng-src="{{itemCtrl.couriersList.arrowImg}}">
+                    </div>
+                    <div class="list-wrapper">
+                        <ul>
+                            <li ng-repeat="courier in itemCtrl.couriersList.items">
+                                <p ng-click="itemCtrl.couriersList.setActiveItem($index)" class="label">{{courier.Name}}</p>
+                                <span ng-click="itemCtrl.editCourier(courier)" title="Редактировать курьера" style="float: right" class="icon"><img src="templates/admin/images/edit.png"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon height-33" title="Добавить курьера" ng-click="itemCtrl.editCourier({})"><img src="templates/admin/images/add.png"></div>
+                </div>
+                <div class="loading-block" style="padding: 10px;;" ng-show="itemCtrl.couriersInUpdate">
+                    <div class="cssload-jumping">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Заказы <a ng-click="itemCtrl.addOrder()" class="button" style="margin-left:15px;font-weight: normal;">Добавить</a></h3>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th class="delivery-time">Время доставки</th>
+                    <th class="delivery-address">Адресс доставки</th>
+                    <th class="payment-type">Способ оплаты</th>
+                    <th class="price">Сумма</th>
+                    <th class="status">Статус</th>
+                    <th class="delete"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in itemCtrl.orders">
+                    <td class="delivery-time">{{order.DeliveryTime}}</td>
+                    <td class="delivery-address">{{order.Street}} д. {{order.Building}} кв. {{order.Room}}</td>
+                    <td class="payment-type">{{order.PaymentType}}</td>
+                    <td class="price" >{{order.Price}}</td>
+                    <td class="status" >{{order.Status}}</td>
+                    <td class="delete" ng-click="itemCtrl.deleteOrder($index)">Удалить</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="footer">
+        <button type="button" class="button">Сохранить</button>
+        <button type="button" class="button" ng-click="itemCtrl.generatePDF()">Сгенерировать PDF</button>
+        <a class="button" ng-href="{{itemCtrl.checkLink}}" ng-show="itemCtrl.checkLink != ''" target="_blank">Открыть</a>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+
+

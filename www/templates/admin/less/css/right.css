@@ -1,0 +1,92 @@
+.category-window {
+  width: 950px;
+  margin-bottom: 2px;
+}
+.calendar-window {
+  width: 950px;
+}
+.calendar-window .arrow {
+  height: 145px;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+  padding-top: 20px;
+  cursor: pointer;
+}
+.calendar-window .days-list {
+  display: inline-block;
+  vertical-align: middle;
+  height: 145px;
+  box-sizing: border-box;
+  width: 856px;
+  overflow: hidden;
+}
+.calendar-window .day-block {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #6e7780;
+  width: 100px;
+  display: inline-block;
+  vertical-align: middle;
+  height: 145px;
+  margin-right: 26px;
+  cursor: pointer;
+  /*-webkit-transition: .3s linear all;
+    transition: .3s linear all;*/
+  /*&.ng-enter{opacity:0;}
+    &.ng-enter.ng-enter-active{opacity:1;};
+
+    &.ng-leave{opacity:1;}
+    &.ng-leave.ng-leave-active{opacity: 0;}*/
+}
+.calendar-window .day-block p {
+  margin: 0;
+}
+.calendar-window .day-block .rectangle {
+  height: 100px;
+  text-align: center;
+  overflow: hidden;
+  background-color: #212830;
+}
+.calendar-window .day-block .rectangle .number {
+  font-size: 60px;
+  line-height: 50px;
+  margin-top: 10px;
+}
+.calendar-window .day-block .rectangle .week-day {
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 15px;
+}
+.calendar-window .day-block .month {
+  font-size: 12px;
+  margin-top: 13px;
+}
+.calendar-window .day-block:last-child {
+  margin-right: 0;
+}
+.calendar-window .day-block:hover .rectangle {
+  background-color: #2a333d;
+}
+.calendar-window .day-block.disable {
+  cursor: auto;
+}
+.calendar-window .day-block.disable p {
+  color: #212830;
+}
+.calendar-window .day-block.disable .rectangle {
+  background-color: #171d23;
+}
+.calendar-window .day-block.active {
+  background-color: #8dc63f;
+}
+.calendar-window .day-block.active p {
+  color: #ffffff;
+}
+.calendar-window .day-block.active .rectangle {
+  background-color: #8dc63f;
+}
+.calendar-window .green-line {
+  background-color: #8dc63f;
+  height: 7px;
+}
