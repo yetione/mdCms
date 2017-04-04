@@ -60,7 +60,7 @@ class Crypt {
         $this->_salt            = $salt;
         $this->_salt_letters    = array_merge(range(0,9), range('a','z'),range('A','Z'));
         $this->_salt_length = 22;
-        if ($opensll_configs){
+        if (false && $opensll_configs){
             $this->set_openssl_configs($opensll_configs['digest_alg'], $opensll_configs['private_key_bits'], $opensll_configs['private_key_type']);
             $this->_keys_path = QS_path(array('_data', 'keys'), true, true);
             $this->_private_key_path = QS_path(array('_data', 'keys', 'private.key'), false, false);
