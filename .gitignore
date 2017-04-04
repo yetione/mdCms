@@ -1,3 +1,5 @@
-
 /www/_cache/
 /www/logs/
+.idea/
+/vendor/
+/composer.lock

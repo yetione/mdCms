@@ -48,7 +48,9 @@ $debug_levels=array(
     'QS_ERRORS'=>2,
     'QS_NOTICE'=>3,
 );
-
+if (file_exists('../vendor/autoload.php')){
+    require_once '../vendor/autoload.php';
+}
 require_once (BASE_PATH.DIRECTORY_SEPARATOR.'Core'.DIRECTORY_SEPARATOR.'functions.php');
 require_once (BASE_PATH.DIRECTORY_SEPARATOR.'Core'.DIRECTORY_SEPARATOR.'Autoloader.php');
 require_once 'Dompdf/autoload.inc.php';

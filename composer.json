@@ -1,0 +1,16 @@
+{
+    "name": "yeti/mdcms",
+    "description": "MakeD CMS",
+    "type": "cms",
+    "require": {
+        "phpmailer/phpmailer": "^5.2"
+    },
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "yetione",
+            "email": "jub45@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev"
+}
