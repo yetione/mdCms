@@ -7,7 +7,7 @@ $siteName = fromPost('site_name', 'DefaultSite');
 $baseUrl = fromPost('base');
 
 $userLogin = fromPost('user_login', 'admin');
-$userPassword = fromPost('user_password', 'mdadmin');
+$userPassword = fromPost('user_password', '');
 $userEmail = fromPost('user_email', 'admin@admin.loc');
 
 //$dbHost = fromPost('db_host', '46.252.168.212');
@@ -18,9 +18,9 @@ $dbDatabase = fromPost('db_database', 'qspace');
 $dbPort = fromPost('db_port', '3306');
 $dbCharset = fromPost('db_charset', 'utf8');
 
-$smtpHost = fromPost('smtp_host', 'smtp.peterhost.ru');
-$smtpPort = fromPost('smtp_port', '25');
-$smtpSecure = fromPost('smtp_secure', 'tls');
+$smtpHost = fromPost('smtp_host', '');
+$smtpPort = fromPost('smtp_port', '');
+$smtpSecure = fromPost('smtp_secure', '');
 
 $sessionLifetime = fromPost('session_lifetime', '59min');
 $sessionIdLifetime = fromPost('session_id_lifetime', '59min');

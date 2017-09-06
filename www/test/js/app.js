@@ -1,1 +1,0 @@
-var testApp = angular.module('TestApp', ['ngAnimate']);

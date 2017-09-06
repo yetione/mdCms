@@ -203,13 +203,13 @@ class Order extends Controller{
         $order->setIsNew(false);
         $order->recount(true, true);
         if (preg_match('(\d{10})', $orderData['Phone']) === 1){
-            $apiId = 'BBDA2D46-48AC-CAC2-02DC-9672D4EFF8AD';
+            $apiId = '';
             $phone1 = '+7'.$orderData['Phone'];
             $text1 = 'Ваш заказ '.$order->getId().' принят к обработке';
             try{
                 $client = new \SmsRu\Api(new \SmsRu\Auth\ApiIdAuth($apiId));
                 $sms1 = new \SmsRu\Entity\Sms($phone1, $text1);
-                $sms1->from = 'SEKTAFOOD';
+                $sms1->from = '';
                 $client->smsSend($sms1);
             }catch (Exception $e){
                 Debugger::log('Order: cant send sms to '.$phone1);
@@ -235,7 +235,7 @@ class Order extends Controller{
      */
     protected function sendOrderEmail($email, $order){
         $mail = new Basic();
-        $mail->setSMTP(['Auth'=>true, 'Username'=>'knuzz_1', 'Password'=>'6EniU8fYZJ']);
+        $mail->setSMTP(['Auth'=>true, 'Username'=>'', 'Password'=>'']);
         //$mail = Basic::getSMTPMailer(['Auth'=>true, 'Username'=>'knuzz_1', 'Password'=>'6EniU8fYZJ']);
         $mail->addAddress($email);
         $mail->setSubject('Информация о заказе');
@@ -272,7 +272,7 @@ class Order extends Controller{
      */
     protected function loadReCaptchaData($response){
         $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $secret = '6LdwxSkTAAAAAGTpk9vLh3nUZABH4k7Ny_kk54c-';
+        $secret = '';
         $ip = $this->getInput()->getIp();
         $curl = curl_init();
         curl_setopt_array($curl, [
